@@ -308,39 +308,23 @@
           
         <p>&emsp;&emsp;JMeter是Apache基于java开发的压力测试工具，可以对网络服务模拟巨大负载，无需安装即可在装有JVM的计算机上运行。</p>
 <h1 id="线程组"><a href="#线程组" class="headerlink" title="线程组"></a>线程组</h1><p>&emsp;&emsp;Test Plan -&gt; 添加 -&gt; 线程（用户）-&gt; 线程组<br>&emsp;&emsp;在<strong>线程组</strong>中可以配置<em>线程数</em>， <em>Ramp-Up时间</em>， <em>循环次数</em>等<br>&emsp;&emsp;- 线程数，即同时对服务器端口访问的线程数量。<br>&emsp;&emsp;- Ramp-Up时间，即上述线程在多长时间内完成访问，0即瞬时完成。<br>&emsp;&emsp;- 循环次数，即上述访问的循环次数。<br>&nbsp;</p>
-<div align=center><img src="" ></div>
-取样器（HTTP请求）
-===
-&emsp;&emsp;线程组 -> 添加 -> 取样器 -> HTTP请求
-&emsp;&emsp;在**取样器**中需要配置*协议*， *服务器地址*， *端口*， *请求类型*， *路径*，对于含参请求还需要配置随请求一起发出的参数。
-&nbsp;
+<div align=center><img src="https://www.hualigs.cn/image/605d966e82ff5.jpg" ></div>
+
+<h1 id="取样器（HTTP请求）"><a href="#取样器（HTTP请求）" class="headerlink" title="取样器（HTTP请求）"></a>取样器（HTTP请求）</h1><p>&emsp;&emsp;线程组 -&gt; 添加 -&gt; 取样器 -&gt; HTTP请求<br>&emsp;&emsp;在<strong>取样器</strong>中需要配置<em>协议</em>， <em>服务器地址</em>， <em>端口</em>， <em>请求类型</em>， <em>路径</em>，对于含参请求还需要配置随请求一起发出的参数。<br>&nbsp;</p>
 <div align=center><img src="https://www.hualigs.cn/image/605d93760ab1e.jpg" ></div>
-配置元件
-===
-HTTP请求默认值
----
-&emsp;&emsp;线程组 -> 添加 -> 配置元件 -> HTTP请求默认值
-&emsp;&emsp;对于同一服务需要测试多个页面吞吐时，重复配置服务器参数便十分繁琐，可以将其统一配置在**HTTP请求默认值**元件中。
-&nbsp;
-<div align=center><img src="https://www.hualigs.cn/image/605d93761dbea.jpg" ></div>
-CSV数据文件设置
----
-&emsp;&emsp;线程组 -> 添加 -> 配置元件 -> CSV数据文件设置
-&emsp;&emsp;当请求含有复杂参数时，我们可以将其参数保存在单独的txt文件中，再通过**CSV数据文件设置**加以载入。
-&nbsp;
-<div align=center><img src="https://www.hualigs.cn/image/605d93761c73a.jpg" ></div>
-HTTP Cookie管理器
----
-&emsp;&emsp;对于需要Cookie的请求，便需要**HTTP Cookie管理器**进行配置。
-&emsp;&emsp;注意设置中的"名称"需要与Cookie名称相同，而值需要与**CSV数据文件设置**中设定的变量名称相同。
-&nbsp;
-<div align=center><img src="https://www.hualigs.cn/image/605d937609b81.jpg" ></div>
-监听器
-===
-&emsp;&emsp;线程组 -> 添加 -> 监听器 -> [聚合报告]
-&emsp;&emsp;**监听器**可以将测试结果加以整理展示。
-&nbsp;
+
+<h1 id="配置元件"><a href="#配置元件" class="headerlink" title="配置元件"></a>配置元件</h1><h2 id="HTTP请求默认值"><a href="#HTTP请求默认值" class="headerlink" title="HTTP请求默认值"></a>HTTP请求默认值</h2><p>&emsp;&emsp;线程组 -&gt; 添加 -&gt; 配置元件 -&gt; HTTP请求默认值<br>&emsp;&emsp;对于同一服务需要测试多个页面吞吐时，重复配置服务器参数便十分繁琐，可以将其统一配置在<strong>HTTP请求默认值</strong>元件中。<br>&nbsp;</p>
 <div align=center><img src="https://www.hualigs.cn/image/605d9376191ef.jpg" ></div>
+
+<h2 id="CSV数据文件设置"><a href="#CSV数据文件设置" class="headerlink" title="CSV数据文件设置"></a>CSV数据文件设置</h2><p>&emsp;&emsp;线程组 -&gt; 添加 -&gt; 配置元件 -&gt; CSV数据文件设置<br>&emsp;&emsp;当请求含有复杂参数时，我们可以将其参数保存在单独的txt文件中，再通过<strong>CSV数据文件设置</strong>加以载入。<br>&nbsp;</p>
+<div align=center><img src="https://www.hualigs.cn/image/605d93761dbea.jpg" ></div>
+
+<h2 id="HTTP-Cookie管理器"><a href="#HTTP-Cookie管理器" class="headerlink" title="HTTP Cookie管理器"></a>HTTP Cookie管理器</h2><p>&emsp;&emsp;对于需要Cookie的请求，便需要<strong>HTTP Cookie管理器</strong>进行配置。<br>&emsp;&emsp;注意设置中的”名称”需要与Cookie名称相同，而值需要与<strong>CSV数据文件设置</strong>中设定的变量名称相同。<br>&nbsp;</p>
+<div align=center><img src="https://www.hualigs.cn/image/605d937609b81.jpg" ></div>
+
+<h1 id="监听器"><a href="#监听器" class="headerlink" title="监听器"></a>监听器</h1><p>&emsp;&emsp;线程组 -&gt; 添加 -&gt; 监听器 -&gt; [聚合报告]<br>&emsp;&emsp;<strong>监听器</strong>可以将测试结果加以整理展示。<br>&nbsp;</p>
+<div align=center><img src="https://www.hualigs.cn/image/605d93761c73a.jpg" ></div>
+
 
       
     </div>

@@ -16,18 +16,19 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="&amp;emsp;&amp;emsp;JMeter是Apache基于java开发的压力测试工具，可以对网络服务模拟巨大负载，无需安装即可在装有JVM的计算机上运行。 线程组&amp;emsp;&amp;emsp;Test Plan -&gt; 添加 -&gt; 线程（用户）-&gt; 线程组&amp;emsp;&amp;emsp;在线程组中可以配置线程数， Ramp-Up时间， 循环次数等&amp;emsp;&amp;emsp;- 线程数，即同时对服务器端口">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.hualigs.cn/image/605d966e82ff5.jpg">
 <meta property="og:image" content="https://www.hualigs.cn/image/605d93760ab1e.jpg">
-<meta property="og:image" content="https://www.hualigs.cn/image/605d93761dbea.jpg">
-<meta property="og:image" content="https://www.hualigs.cn/image/605d93761c73a.jpg">
-<meta property="og:image" content="https://www.hualigs.cn/image/605d937609b81.jpg">
 <meta property="og:image" content="https://www.hualigs.cn/image/605d9376191ef.jpg">
+<meta property="og:image" content="https://www.hualigs.cn/image/605d93761dbea.jpg">
+<meta property="og:image" content="https://www.hualigs.cn/image/605d937609b81.jpg">
+<meta property="og:image" content="https://www.hualigs.cn/image/605d93761c73a.jpg">
 <meta property="article:published_time" content="2021-03-26T06:54:00.000Z">
-<meta property="article:modified_time" content="2021-03-26T08:02:28.092Z">
+<meta property="article:modified_time" content="2021-03-26T08:09:34.084Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="JMeter">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.hualigs.cn/image/605d93760ab1e.jpg">
+<meta name="twitter:image" content="https://www.hualigs.cn/image/605d966e82ff5.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -326,39 +327,23 @@
           
         <p>&emsp;&emsp;JMeter是Apache基于java开发的压力测试工具，可以对网络服务模拟巨大负载，无需安装即可在装有JVM的计算机上运行。</p>
 <h1 id="线程组"><a href="#线程组" class="headerlink" title="线程组"></a>线程组</h1><p>&emsp;&emsp;Test Plan -&gt; 添加 -&gt; 线程（用户）-&gt; 线程组<br>&emsp;&emsp;在<strong>线程组</strong>中可以配置<em>线程数</em>， <em>Ramp-Up时间</em>， <em>循环次数</em>等<br>&emsp;&emsp;- 线程数，即同时对服务器端口访问的线程数量。<br>&emsp;&emsp;- Ramp-Up时间，即上述线程在多长时间内完成访问，0即瞬时完成。<br>&emsp;&emsp;- 循环次数，即上述访问的循环次数。<br>&nbsp;</p>
-<div align=center><img src="" ></div>
-取样器（HTTP请求）
-===
-&emsp;&emsp;线程组 -> 添加 -> 取样器 -> HTTP请求
-&emsp;&emsp;在**取样器**中需要配置*协议*， *服务器地址*， *端口*， *请求类型*， *路径*，对于含参请求还需要配置随请求一起发出的参数。
-&nbsp;
+<div align=center><img src="https://www.hualigs.cn/image/605d966e82ff5.jpg" ></div>
+
+<h1 id="取样器（HTTP请求）"><a href="#取样器（HTTP请求）" class="headerlink" title="取样器（HTTP请求）"></a>取样器（HTTP请求）</h1><p>&emsp;&emsp;线程组 -&gt; 添加 -&gt; 取样器 -&gt; HTTP请求<br>&emsp;&emsp;在<strong>取样器</strong>中需要配置<em>协议</em>， <em>服务器地址</em>， <em>端口</em>， <em>请求类型</em>， <em>路径</em>，对于含参请求还需要配置随请求一起发出的参数。<br>&nbsp;</p>
 <div align=center><img src="https://www.hualigs.cn/image/605d93760ab1e.jpg" ></div>
-配置元件
-===
-HTTP请求默认值
----
-&emsp;&emsp;线程组 -> 添加 -> 配置元件 -> HTTP请求默认值
-&emsp;&emsp;对于同一服务需要测试多个页面吞吐时，重复配置服务器参数便十分繁琐，可以将其统一配置在**HTTP请求默认值**元件中。
-&nbsp;
-<div align=center><img src="https://www.hualigs.cn/image/605d93761dbea.jpg" ></div>
-CSV数据文件设置
----
-&emsp;&emsp;线程组 -> 添加 -> 配置元件 -> CSV数据文件设置
-&emsp;&emsp;当请求含有复杂参数时，我们可以将其参数保存在单独的txt文件中，再通过**CSV数据文件设置**加以载入。
-&nbsp;
-<div align=center><img src="https://www.hualigs.cn/image/605d93761c73a.jpg" ></div>
-HTTP Cookie管理器
----
-&emsp;&emsp;对于需要Cookie的请求，便需要**HTTP Cookie管理器**进行配置。
-&emsp;&emsp;注意设置中的"名称"需要与Cookie名称相同，而值需要与**CSV数据文件设置**中设定的变量名称相同。
-&nbsp;
-<div align=center><img src="https://www.hualigs.cn/image/605d937609b81.jpg" ></div>
-监听器
-===
-&emsp;&emsp;线程组 -> 添加 -> 监听器 -> [聚合报告]
-&emsp;&emsp;**监听器**可以将测试结果加以整理展示。
-&nbsp;
+
+<h1 id="配置元件"><a href="#配置元件" class="headerlink" title="配置元件"></a>配置元件</h1><h2 id="HTTP请求默认值"><a href="#HTTP请求默认值" class="headerlink" title="HTTP请求默认值"></a>HTTP请求默认值</h2><p>&emsp;&emsp;线程组 -&gt; 添加 -&gt; 配置元件 -&gt; HTTP请求默认值<br>&emsp;&emsp;对于同一服务需要测试多个页面吞吐时，重复配置服务器参数便十分繁琐，可以将其统一配置在<strong>HTTP请求默认值</strong>元件中。<br>&nbsp;</p>
 <div align=center><img src="https://www.hualigs.cn/image/605d9376191ef.jpg" ></div>
+
+<h2 id="CSV数据文件设置"><a href="#CSV数据文件设置" class="headerlink" title="CSV数据文件设置"></a>CSV数据文件设置</h2><p>&emsp;&emsp;线程组 -&gt; 添加 -&gt; 配置元件 -&gt; CSV数据文件设置<br>&emsp;&emsp;当请求含有复杂参数时，我们可以将其参数保存在单独的txt文件中，再通过<strong>CSV数据文件设置</strong>加以载入。<br>&nbsp;</p>
+<div align=center><img src="https://www.hualigs.cn/image/605d93761dbea.jpg" ></div>
+
+<h2 id="HTTP-Cookie管理器"><a href="#HTTP-Cookie管理器" class="headerlink" title="HTTP Cookie管理器"></a>HTTP Cookie管理器</h2><p>&emsp;&emsp;对于需要Cookie的请求，便需要<strong>HTTP Cookie管理器</strong>进行配置。<br>&emsp;&emsp;注意设置中的”名称”需要与Cookie名称相同，而值需要与<strong>CSV数据文件设置</strong>中设定的变量名称相同。<br>&nbsp;</p>
+<div align=center><img src="https://www.hualigs.cn/image/605d937609b81.jpg" ></div>
+
+<h1 id="监听器"><a href="#监听器" class="headerlink" title="监听器"></a>监听器</h1><p>&emsp;&emsp;线程组 -&gt; 添加 -&gt; 监听器 -&gt; [聚合报告]<br>&emsp;&emsp;<strong>监听器</strong>可以将测试结果加以整理展示。<br>&nbsp;</p>
+<div align=center><img src="https://www.hualigs.cn/image/605d93761c73a.jpg" ></div>
+
 
       
     </div>
@@ -370,7 +355,7 @@ HTTP Cookie管理器
         <p><span>本文标题:</span><a  href="/2021/03/26/JMeter%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95/">JMeter压力测试</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问  的个人博客"></a></p>
         <p><span>发布时间:</span>2021年03月26日 - 14时54分</p>
-        <p><span>最后更新:</span>2021年03月26日 - 16时02分</p>
+        <p><span>最后更新:</span>2021年03月26日 - 16时09分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2021/03/26/JMeter%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95/" title="JMeter压力测试">http://example.com/2021/03/26/JMeter%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95/</a>
             <span class="copy-path" data-clipboard-text="原文: http://example.com/2021/03/26/JMeter%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95/　　作者: " title=""></span>
@@ -398,7 +383,7 @@ HTTP Cookie管理器
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E7%BB%84"><span class="toc-number">1.</span> <span class="toc-text">线程组</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E7%BB%84"><span class="toc-number">1.</span> <span class="toc-text">线程组</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%96%E6%A0%B7%E5%99%A8%EF%BC%88HTTP%E8%AF%B7%E6%B1%82%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">取样器（HTTP请求）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%85%83%E4%BB%B6"><span class="toc-number">3.</span> <span class="toc-text">配置元件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP%E8%AF%B7%E6%B1%82%E9%BB%98%E8%AE%A4%E5%80%BC"><span class="toc-number">3.1.</span> <span class="toc-text">HTTP请求默认值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSV%E6%95%B0%E6%8D%AE%E6%96%87%E4%BB%B6%E8%AE%BE%E7%BD%AE"><span class="toc-number">3.2.</span> <span class="toc-text">CSV数据文件设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP-Cookie%E7%AE%A1%E7%90%86%E5%99%A8"><span class="toc-number">3.3.</span> <span class="toc-text">HTTP Cookie管理器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%91%E5%90%AC%E5%99%A8"><span class="toc-number">4.</span> <span class="toc-text">监听器</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
