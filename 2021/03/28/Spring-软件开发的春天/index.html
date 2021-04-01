@@ -7,15 +7,29 @@
   
   
   
-  <title>Hexo</title>
+  <title>Spring-软件开发的春天 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="Spring本身是一个大杂烩，整合了现有的技术框架，使现有技术更加容易使用。 1、Spring组成  123456&lt;!-- https:&#x2F;&#x2F;mvnreposity.com&#x2F;artifact&#x2F;org.springframework&#x2F;spring-webmvc --&gt;&lt;dependency&gt;     &lt;groupId&gt;org.springframework&lt;&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring-软件开发的春天">
+<meta property="og:url" content="http://example.com/2021/03/28/Spring-%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9A%84%E6%98%A5%E5%A4%A9/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Spring本身是一个大杂烩，整合了现有的技术框架，使现有技术更加容易使用。 1、Spring组成  123456&lt;!-- https:&#x2F;&#x2F;mvnreposity.com&#x2F;artifact&#x2F;org.springframework&#x2F;spring-webmvc --&gt;&lt;dependency&gt;     &lt;groupId&gt;org.springframework&lt;&#x2F;">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.hualigs.cn/image/60602eb6ca8f1.jpg">
+<meta property="og:image" content="https://www.hualigs.cn/image/60617c734233f.jpg">
+<meta property="og:image" content="https://www.hualigs.cn/image/60641f7e45f02.jpg">
+<meta property="og:image" content="https://www.hualigs.cn/image/60645548bf3c4.jpg">
+<meta property="og:image" content="https://www.hualigs.cn/image/606457e65cb05.jpg">
+<meta property="article:published_time" content="2021-03-28T07:07:04.000Z">
+<meta property="article:modified_time" content="2021-04-01T02:48:07.307Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Spring">
+<meta property="article:tag" content="IOC">
+<meta property="article:tag" content="AOP">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.hualigs.cn/image/60602eb6ca8f1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -33,9 +47,6 @@
   <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   
-    
-    
-  
   
       <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
   
@@ -46,8 +57,8 @@
       var yiliaConfig = {
           fancybox: true,
           animate: true,
-          isHome: true,
-          isPost: false,
+          isHome: false,
+          isPost: true,
           isArchive: false,
           isTag: false,
           isCategory: false,
@@ -275,169 +286,7 @@
         </header>
     </div>
 </nav>
-      <div class="body-wrap">
-  
-    <article id="post-Spring整合Mybatis" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2021/03/29/Spring%E6%95%B4%E5%90%88Mybatis/" class="article-date">
-      <time datetime="2021-03-29T07:07:04.000Z" itemprop="datePublished">2021-03-29</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2021/03/29/Spring%E6%95%B4%E5%90%88Mybatis/">Spring整合Mybatis</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h1 id="导入相关jar包"><a href="#导入相关jar包" class="headerlink" title="导入相关jar包"></a>导入相关jar包</h1><ul>
-<li>junit</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>mybatis</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>mysql数据库</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Spring相关</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-webmvc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-jdbc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>aop织入</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.aspectj<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aspectjweaver<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>mybatis-spring支持</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-spring<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="mybatis"><a href="#mybatis" class="headerlink" title="mybatis"></a>mybatis</h1><p>编写实体类（根据mysql数据库中的表的字段编写类的属性）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String passwd;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>编写核心配置文件（mybatis-config.xml）</p>
- <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">configuration</span></span></span><br><span class="line"><span class="meta">	<span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//mybatis.org//DID Config 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">	<span class="meta-string">&quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--核心配置文件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--别名管理(查询的类的包名)--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">&quot;com.yhw.pojo&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--链接数据库--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">&quot;JDBC&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">&quot;POOLED&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;driver&quot;</span> <span class="attr">value</span>=<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;url&quot;</span> <span class="attr">value</span>=<span class="string">&quot;jdbc:mysql://localhost:3306/mybatis&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;root&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;root1234&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!--绑定--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">class</span>=<span class="string">&quot;com.yhw.mapper.UserMapper&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>编写接口</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserMapper</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">selectUser</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>编写Mapper.xml（sql语句块尽量不要叫中文注解，可能报错）</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">mapper</span></span></span><br><span class="line"><span class="meta">	<span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//mybatis.org//DID Config 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">	<span class="meta-string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--绑定接口--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;com.yhw.mapper.UserMapper&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--绑定方法--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectUser&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;user&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--相关SQL语句--&gt;</span></span><br><span class="line">        select * from mybatis.user;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>测试</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 工具类</span></span><br><span class="line">        String resource = <span class="string">&quot;mybatis-config.xml&quot;</span>;</span><br><span class="line">        InputStream in = Resources.getResourceAsStream(resource);</span><br><span class="line">        SqlSessionFactory sessionFactory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(in);</span><br><span class="line">        SqlSession sqlSession = sessionFactory.openSession(<span class="keyword">true</span>);</span><br><span class="line">        </span><br><span class="line">        UserMapper mapper = sqlSession.getMapper(UserMapper.class);</span><br><span class="line">        List&lt;User&gt; userList = mapper.seletUser();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果出现xml无法导出需要在pom依赖中配置maven静态过滤</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/main/java<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.xml<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">filtering</span>&gt;</span>true<span class="tag">&lt;/<span class="name">filtering</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="Mybatis-Spring"><a href="#Mybatis-Spring" class="headerlink" title="Mybatis-Spring"></a>Mybatis-Spring</h1><p>Mybatis-Spring将MyBatis代码无缝的整合到Spring中，它允许MyBatis参与到Spring的事务管理中。</p>
-<h2 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h2><ul>
-<li>创建spring-dao.xml（mybatis-config.xml中的重复内容就不再需要了）</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--DataSource:使用Spring的数据源替换Mybatis的配置--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--使用Spring提供的JDBC--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;dataSource&quot;</span> <span class="attr">class</span>=<span class="string">&quot;org.springframework.jdbc.datasource.DriverManagerDataSource&quot;</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;driverClassName&quot;</span> <span class="attr">value</span>=<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>/&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;url&quot;</span> <span class="attr">value</span>=<span class="string">&quot;jdbc:mysql://localhost:3306/mybatis&quot;</span>/&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;root&quot;</span>/&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;root1234&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--sqlSessionFactory--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;sqlSessionFactory&quot;</span> <span class="attr">class</span>=<span class="string">&quot;org.mybatis.spring.SqlSessionFactoryBean&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;dataSource&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;dataSource&quot;</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--绑定Mybatis的配置文件--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;configLocation&quot;</span> <span class="attr">value</span>=<span class="string">&quot;classpath:mybatis-config.xml&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;mapperLocations&quot;</span> <span class="attr">value</span>=<span class="string">&quot;classpath:com/yhw/mapper/*.xml&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--sqlSession模板--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;sqlSessionTemplate&quot;</span> <span class="attr">class</span>=<span class="string">&quot;org.mybatis.spring.SqlSessionTemplate&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--只能用构造器注入，没有set方法--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">index</span>=<span class="string">&quot;0&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;sqlSessionFactory&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>编写接口</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserMapper</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">selectUser</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>实现接口</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserMapperImpl</span> <span class="keyword">implements</span> <span class="title">UserMapper</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 所有操作，都使用sqlSessionTemplate</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> SqlSessionTemplate sqlSession;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSqlSession</span><span class="params">(SqlSessionTemplate sqlSession)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.sqlSession = sqlSession;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">selectUser</span><span class="params">()</span></span>&#123;</span><br><span class="line">        UserMapper mapper = sqlSession.getMapper(UserMapper.class);</span><br><span class="line">        <span class="keyword">return</span> mapper.selectUser();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>测试</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Mytest</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        ApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">&quot;spring-dao.xml&quot;</span>);</span><br><span class="line">        UserMapper userMapper = context.getBean(<span class="string">&quot;userMapperImpl&quot;</span>, UserMapper.class);</span><br><span class="line">        </span><br><span class="line">        List&lt;User&gt; list = userMapper.selectUser();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h2><p>SqlSessionDaoSupport是一个抽象的支持类，可以提供SqlSession，调用getSqlSession()方法即可得到一个SqlSessionTemplate，之后就可以执行SQL方法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.mybatis.spring.support.SqlSessionDaoSupport;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserMapperImpl</span> <span class="keyword">extends</span> <span class="title">SqlSessionDaoSupport</span> <span class="keyword">implements</span> <span class="title">UserMapper</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">selectUser</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> getSqlSession().getMapper(UserMapper.class).selectUser();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>只需要将这个类注册bean后，注入一个SqlSessionFactory</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;sqlSessionFactory&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;sqlSessionFactory&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="声明式事务"><a href="#声明式事务" class="headerlink" title="声明式事务"></a>声明式事务</h1><h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><p>把一组业务当成一个业务来做：要么都成功，要么都失败，确保数据的完整性和一致性。</p>
-<p>事务的ACID原则：</p>
-<ul>
-<li>原子性：一个事务是不可分割的工作单位，事务中包含的操作要么都做，要么都不做。</li>
-<li>一致性：事务开始前和结束后，数据库的完整性约束不可以被破坏。比如A向B转账，不可能A扣了钱，B却没收到。</li>
-<li>隔离性：一个事务的执行不能被其他事务干扰，即一个事务内部的操作与使用的数据，要与其他事务相隔离，防止数据损坏。</li>
-<li>持久性：一个事务一旦提交，它对数据库的影响是永久性的，无论系统出现什么问题，结果都不会再被影响，被持久化的写入数据库中。</li>
-</ul>
-<h2 id="Spring事务管理"><a href="#Spring事务管理" class="headerlink" title="Spring事务管理"></a>Spring事务管理</h2><ul>
-<li>声明式事务：AOP应用，不影响代码本身。</li>
-<li>编程式事务：需要在代码中进行事务的管理【一般不用】。</li>
-</ul>
-<h2 id="配置声明式事务"><a href="#配置声明式事务" class="headerlink" title="配置声明式事务"></a>配置声明式事务</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--获取事务管理器--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;transactionManager&quot;</span> <span class="attr">class</span>=<span class="string">&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;dataSource&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;dataSource&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--结合AOP实现事务的织入--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--配置事务通知--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">tx:advice</span> <span class="attr">id</span>=<span class="string">&quot;txAdvice&quot;</span> <span class="attr">transaction-manager</span>=<span class="string">&quot;transactionManager&quot;</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--给哪些方法配置事务--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置事务的传播特性(默认REQUIRED)--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tx:attributes</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">&quot;add&quot;</span> <span class="attr">propagation</span>=<span class="string">&quot;REQUIRED&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">&quot;delete&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">&quot;update&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">&quot;query&quot;</span> <span class="attr">read-only</span>=<span class="string">&quot;true&quot;</span>/&gt;</span>	<span class="comment">&lt;!--只读--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">&quot;*&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tx:attributes</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tx:advice</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置事务切入--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--定义切入点（所有与数据库有关的操作，即mapper下的所有类的所有方法）--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">&quot;txPointCut&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;execution(* com.yhw.mapper.*.*(..))&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:advisor</span> <span class="attr">advice-ref</span>=<span class="string">&quot;txAdvice&quot;</span> <span class="attr">pointcut-ref</span>=<span class="string">&quot;txPointCut&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>可以在<a href="tx:method">tx:method</a>标签中通过propagation配置事务传播特性：</p>
-<ul>
-<li><strong>REQUIRED</strong>：支持当前事务，如果当前没有事务，则新建一个事务，这是Spring的默认选择。</li>
-<li><strong>SUPPORTS</strong>：支持当前事务，如果当前没有事务，就以非事务方式执行。</li>
-<li><strong>MANDATORY</strong>：支持当前事务，如果当前没有事务，就抛出异常。</li>
-<li><strong>REQUIRES_NEW</strong>：新建事务，如果当前存在事务，就把当前事务挂起。</li>
-<li><strong>NOT_SUPPORTED</strong>：以非事务方式执行，如果当前存在事务，就把当前事务挂起。</li>
-<li><strong>NEVER</strong>：以非事务方式执行，如果当前存在事务，就抛出异常。</li>
-<li><strong>NESTED</strong>：支持当前事务，如果当前事务存在，则执行一个嵌套事务，如果当前没有事务，就新建一个事务。</li>
-</ul>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mybatis/" rel="tag">Mybatis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%8B%E5%8A%A1/" rel="tag">事务</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Spring-软件开发的春天" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Spring-软件开发的春天" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a  href="/2021/03/28/Spring-%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9A%84%E6%98%A5%E5%A4%A9/" class="article-date">
@@ -454,13 +303,24 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2021/03/28/Spring-%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9A%84%E6%98%A5%E5%A4%A9/">Spring-软件开发的春天</a>
+    <h1 class="article-title" itemprop="name">
+      Spring-软件开发的春天
     </h1>
   
 
 
       </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AOP/" rel="tag">AOP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IOC/" rel="tag">IOC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
       
     
     <div class="article-entry" itemprop="articleBody">
@@ -743,508 +603,164 @@
       
     </div>
     
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AOP/" rel="tag">AOP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IOC/" rel="tag">IOC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
   </div>
   
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-lombok注解使用" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2021/03/27/lombok%E6%B3%A8%E8%A7%A3%E4%BD%BF%E7%94%A8/" class="article-date">
-      <time datetime="2021-03-27T12:03:13.000Z" itemprop="datePublished">2021-03-27</time>
-</a>
-
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a  href="/2021/03/28/Spring-%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9A%84%E6%98%A5%E5%A4%A9/">Spring-软件开发的春天</a></p>
+        <p><span>文章作者:</span><a  href="/" title="访问  的个人博客"></a></p>
+        <p><span>发布时间:</span>2021年03月28日 - 15时07分</p>
+        <p><span>最后更新:</span>2021年04月01日 - 10时48分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2021/03/28/Spring-%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9A%84%E6%98%A5%E5%A4%A9/" title="Spring-软件开发的春天">http://example.com/2021/03/28/Spring-%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9A%84%E6%98%A5%E5%A4%A9/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://example.com/2021/03/28/Spring-%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9A%84%E6%98%A5%E5%A4%A9/　　作者: " title=""></span>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
     </div>
+
+
+
+<nav id="article-nav">
   
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+    <a  href="/2021/03/29/Spring%E6%95%B4%E5%90%88Mybatis/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
         
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2021/03/27/lombok%E6%B3%A8%E8%A7%A3%E4%BD%BF%E7%94%A8/">lombok注解使用</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>&emsp;&emsp;创建一个类往往需要编写这个类的各种构造方法，各个属性的set/get方法，以及重写Object中的方法；而lombok可以让这一切变得简单。只需要再pom文件中引入相关依赖，即可使用一行注解替换大段代码。</p>
-<h1 id="Getter-Setter"><a href="#Getter-Setter" class="headerlink" title="@Getter/@Setter"></a>@Getter/@Setter</h1><p>&emsp;&emsp;作用于成员变量，生成该变量的get/set方法；<br>&emsp;&emsp;作用于类，生成该类所有成员变量的get/set方法。</p>
-<h1 id="NonNull"><a href="#NonNull" class="headerlink" title="@NonNull"></a>@NonNull</h1><p>&emsp;&emsp;作用于成员变量，标识该变量不可为空，否则抛出空指针异常；<br>&emsp;&emsp;作用于成员方法的参数，标识调用该方法时，该参数不可为空，否则抛出空指针异常。</p>
-<h1 id="NoArgsConstructor-AllArgsConstructor"><a href="#NoArgsConstructor-AllArgsConstructor" class="headerlink" title="@NoArgsConstructor/@AllArgsConstructor"></a>@NoArgsConstructor/@AllArgsConstructor</h1><p>&emsp;&emsp;作用于类，生成该类的无参构造/全参构造。</p>
-<h1 id="RequiredArgsConstructor"><a href="#RequiredArgsConstructor" class="headerlink" title="@RequiredArgsConstructor"></a>@RequiredArgsConstructor</h1><p>&emsp;&emsp;作用于类，生成所有被fianl或@NonNull修饰的成员变量的构造方法。</p>
-<h1 id="ToString"><a href="#ToString" class="headerlink" title="@ToString"></a>@ToString</h1><p>&emsp;&emsp;作用于类，重写toString()方法，可以通过of指定要使用的成员变量，也可以通过exclude指定不使用的成员变量。<br>&emsp;&emsp;例如：@ToString(of={“param1”,”param2”})或@ToString(exclude={“param1”,”param2”})</p>
-<h1 id="EqualsAndHashCode"><a href="#EqualsAndHashCode" class="headerlink" title="@EqualsAndHashCode"></a>@EqualsAndHashCode</h1><p>&emsp;&emsp;作用于类，重写equals()和hashcode(),可以通过of指定要使用的成员变量，也可以通过exclude指定不使用的成员变量。</p>
-<h1 id="Data"><a href="#Data" class="headerlink" title="@Data"></a>@Data</h1><p>&emsp;&emsp;作用于类，是@Getter，@Setter，@ToString，@EqualsAndHashCode，@RequiredArgsConstructor的集合。</p>
-<h1 id="Value"><a href="#Value" class="headerlink" title="@Value"></a>@Value</h1><p>&emsp;&emsp;作用于类，类似于@Data，但默认所有成员变量都由”private final”修饰，因而不会生成set方法。</p>
-<h1 id="Cleanup"><a href="#Cleanup" class="headerlink" title="@Cleanup"></a>@Cleanup</h1><p>&emsp;&emsp;作用于资源变量，标识该资源会被自动关闭，默认调用close()方法，也可以通过@Cleanup(“methodName”)指定要调用的方法。<br>&emsp;&emsp;例如： @Cleanup InputStream in = new FileInputStream();</p>
-<h1 id="SneakyThrows"><a href="#SneakyThrows" class="headerlink" title="@SneakyThrows"></a>@SneakyThrows</h1><p>&emsp;&emsp;作用于方法，相当于try-catch语句包，捕获异常并在catch中用Lombok.sneakyThrow(e)把异常抛出，可以通过@SneakyThrows(Exception.class)指定抛出的异常类型。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lombok/" rel="tag">lombok</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B3%A8%E8%A7%A3/" rel="tag">注解</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-JMeter压力测试" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2021/03/26/JMeter%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95/" class="article-date">
-      <time datetime="2021-03-26T06:54:00.000Z" itemprop="datePublished">2021-03-26</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+          Spring整合Mybatis
         
+      </div>
+    </a>
   
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2021/03/26/JMeter%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95/">JMeter压力测试</a>
-    </h1>
   
+    <a  href="/2021/03/27/lombok%E6%B3%A8%E8%A7%A3%E4%BD%BF%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">lombok注解使用</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
 
 
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>&emsp;&emsp;JMeter是Apache基于java开发的压力测试工具，可以对网络服务模拟巨大负载，无需安装即可在装有JVM的计算机上运行。</p>
-<h1 id="线程组"><a href="#线程组" class="headerlink" title="线程组"></a>线程组</h1><p>&emsp;&emsp;Test Plan -&gt; 添加 -&gt; 线程（用户）-&gt; 线程组<br>&emsp;&emsp;在<strong>线程组</strong>中可以配置<em>线程数</em>， <em>Ramp-Up时间</em>， <em>循环次数</em>等<br>&emsp;&emsp;- 线程数，即同时对服务器端口访问的线程数量。<br>&emsp;&emsp;- Ramp-Up时间，即上述线程在多长时间内完成访问，0即瞬时完成。<br>&emsp;&emsp;- 循环次数，即上述访问的循环次数。<br>&nbsp;</p>
-<div align=center><img src="https://www.hualigs.cn/image/605d966e82ff5.jpg" ></div>
-
-<h1 id="取样器（HTTP请求）"><a href="#取样器（HTTP请求）" class="headerlink" title="取样器（HTTP请求）"></a>取样器（HTTP请求）</h1><p>&emsp;&emsp;线程组 -&gt; 添加 -&gt; 取样器 -&gt; HTTP请求<br>&emsp;&emsp;在<strong>取样器</strong>中需要配置<em>协议</em>， <em>服务器地址</em>， <em>端口</em>， <em>请求类型</em>， <em>路径</em>，对于含参请求还需要配置随请求一起发出的参数。<br>&nbsp;</p>
-<div align=center><img src="https://www.hualigs.cn/image/605d93760ab1e.jpg" ></div>
-
-<h1 id="配置元件"><a href="#配置元件" class="headerlink" title="配置元件"></a>配置元件</h1><h2 id="HTTP请求默认值"><a href="#HTTP请求默认值" class="headerlink" title="HTTP请求默认值"></a>HTTP请求默认值</h2><p>&emsp;&emsp;线程组 -&gt; 添加 -&gt; 配置元件 -&gt; HTTP请求默认值<br>&emsp;&emsp;对于同一服务需要测试多个页面吞吐时，重复配置服务器参数便十分繁琐，可以将其统一配置在<strong>HTTP请求默认值</strong>元件中。<br>&nbsp;</p>
-<div align=center><img src="https://www.hualigs.cn/image/605d9376191ef.jpg" ></div>
-
-<h2 id="CSV数据文件设置"><a href="#CSV数据文件设置" class="headerlink" title="CSV数据文件设置"></a>CSV数据文件设置</h2><p>&emsp;&emsp;线程组 -&gt; 添加 -&gt; 配置元件 -&gt; CSV数据文件设置<br>&emsp;&emsp;当请求含有复杂参数时，我们可以将其参数保存在单独的txt文件中，再通过<strong>CSV数据文件设置</strong>加以载入。<br>&nbsp;</p>
-<div align=center><img src="https://www.hualigs.cn/image/605d93761dbea.jpg" ></div>
-
-<h2 id="HTTP-Cookie管理器"><a href="#HTTP-Cookie管理器" class="headerlink" title="HTTP Cookie管理器"></a>HTTP Cookie管理器</h2><p>&emsp;&emsp;对于需要Cookie的请求，便需要<strong>HTTP Cookie管理器</strong>进行配置。<br>&emsp;&emsp;注意设置中的”名称”需要与Cookie名称相同，而值需要与<strong>CSV数据文件设置</strong>中设定的变量名称相同。<br>&nbsp;</p>
-<div align=center><img src="https://www.hualigs.cn/image/605d937609b81.jpg" ></div>
-
-<h1 id="监听器"><a href="#监听器" class="headerlink" title="监听器"></a>监听器</h1><p>&emsp;&emsp;线程组 -&gt; 添加 -&gt; 监听器 -&gt; [聚合报告]<br>&emsp;&emsp;<strong>监听器</strong>可以将测试结果加以整理展示。<br>&nbsp;</p>
-<div align=center><img src="https://www.hualigs.cn/image/605d93761c73a.jpg" ></div>
-
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JMeter/" rel="tag">JMeter</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
   
 </article>
 
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E3%80%81Spring%E7%BB%84%E6%88%90"><span class="toc-number">1.</span> <span class="toc-text">1、Spring组成</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E3%80%81IOC%EF%BC%88%E6%8E%A7%E5%88%B6%E5%8F%8D%E8%BD%AC%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">2、IOC（控制反转）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8E%A8%E5%AF%BC"><span class="toc-number">2.1.</span> <span class="toc-text">问题推导</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3%E3%80%81IOC%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">3、IOC创建对象的方式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8Exml%E9%85%8D%E7%BD%AE"><span class="toc-number">3.1.</span> <span class="toc-text">基于xml配置</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4%E3%80%81%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5-DI"><span class="toc-number">4.</span> <span class="toc-text">4、依赖注入(DI)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%99%A8%E6%B3%A8%E5%85%A5"><span class="toc-number">4.1.</span> <span class="toc-text">构造器注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Set%E6%96%B9%E5%BC%8F%E6%B3%A8%E5%85%A5"><span class="toc-number">4.2.</span> <span class="toc-text">Set方式注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%93%E5%B1%95%E6%96%B9%E5%BC%8F%E6%B3%A8%E5%85%A5"><span class="toc-number">4.3.</span> <span class="toc-text">拓展方式注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bean%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-number">4.4.</span> <span class="toc-text">Bean作用域</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5%E3%80%81Bean%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D"><span class="toc-number">5.</span> <span class="toc-text">5、Bean的自动装配</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D"><span class="toc-number">5.1.</span> <span class="toc-text">基于注解自动装配</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6%E3%80%81%E4%BD%BF%E7%94%A8%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91"><span class="toc-number">6.</span> <span class="toc-text">6、使用注解开发</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#bean"><span class="toc-number">6.1.</span> <span class="toc-text">bean</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7%E6%B3%A8%E5%85%A5"><span class="toc-number">6.2.</span> <span class="toc-text">属性注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8D%E7%94%9F%E6%B3%A8%E8%A7%A3"><span class="toc-number">6.3.</span> <span class="toc-text">衍生注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D"><span class="toc-number">6.4.</span> <span class="toc-text">自动装配</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-number">6.5.</span> <span class="toc-text">作用域</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7%E3%80%81JavaConfig"><span class="toc-number">7.</span> <span class="toc-text">7、JavaConfig</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80"><span class="toc-number">7.1.</span> <span class="toc-text">方法一</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C"><span class="toc-number">7.2.</span> <span class="toc-text">方法二</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-number">7.3.</span> <span class="toc-text">其他</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8%E3%80%81%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F"><span class="toc-number">8.</span> <span class="toc-text">8、代理模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86"><span class="toc-number">8.1.</span> <span class="toc-text">静态代理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86"><span class="toc-number">8.2.</span> <span class="toc-text">动态代理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9%E3%80%81AOP"><span class="toc-number">9.</span> <span class="toc-text">9、AOP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#AOP%E5%9C%A8Spring%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">9.1.</span> <span class="toc-text">AOP在Spring的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring%E4%BD%BF%E7%94%A8AOP"><span class="toc-number">9.2.</span> <span class="toc-text">Spring使用AOP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F%E4%B8%80%EF%BC%9A%E4%BD%BF%E7%94%A8Spring%E7%9A%84API%E6%8E%A5%E5%8F%A3"><span class="toc-number">9.2.1.</span> <span class="toc-text">方式一：使用Spring的API接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F%E4%BA%8C%EF%BC%9A%E4%BD%BF%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E3%80%90%E4%B8%BB%E8%A6%81%E6%98%AF%E5%88%87%E9%9D%A2%E5%AE%9A%E4%B9%89%E3%80%91"><span class="toc-number">9.2.2.</span> <span class="toc-text">方式二：使用自定义类【主要是切面定义】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F%E4%B8%89%EF%BC%9A%E4%BD%BF%E7%94%A8%E6%B3%A8%E8%A7%A3%E5%AE%9E%E7%8E%B0"><span class="toc-number">9.2.3.</span> <span class="toc-text">方式三：使用注解实现</span></a></li></ol></li></ol></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
 
 
 
 
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
 
 
 
 
-
-
-  
-    <article id="post-RabbitMq-笔记" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2021/03/25/RabbitMq-%E7%AC%94%E8%AE%B0/" class="article-date">
-      <time datetime="2021-03-25T07:15:21.000Z" itemprop="datePublished">2021-03-25</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
     
-      <input type="hidden" class="isFancy" />
+        <section class="changyan" id="comments">
+  <!--<div id="uyan_frame"></div>-->
+  <div id="SOHUCS"></div>
+  <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js"></script>
+  <script type="text/javascript">
+    window.changyan.api.config({
+      appid: 'xxxx',
+      conf: 'xxxxxxxxx'
+    });
+  </script>
+</section>
     
-    
-      <header class="article-header">
+
+
+
+    <div class="scroll" id="post-nav-button">
         
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2021/03/25/RabbitMq-%E7%AC%94%E8%AE%B0/">RabbitMq 笔记</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>&emsp;&emsp;<strong>消息队列</strong>是分布式系统中重要的组件，其可以比作是一个存放消息的容器，一边连接着生产者，另一边连接着消费者。<strong>生产者</strong>负责生产消息，<strong>消费者</strong>则监听着队列，负责消费（处理）消息。使用消息队列可以实现异步处理，进而实现削峰，提高系统性能，降低系统耦合对。<br><strong>RabbitMq</strong>是由Erlang语言编写的，实现了<strong>AMQP协议</strong>的开源消息代理中间件，具有<em>可伸缩（集群服务）</em>以及<em>消息持久化（硬盘加载）</em>的特性。</p>
-<h1 id="交换模式"><a href="#交换模式" class="headerlink" title="交换模式"></a>交换模式</h1><p>&emsp;&emsp;根据消息队列所使用的<strong>交换机（Exchange）</strong>类型不同，可以将消息交换模式分为：<em>direct</em>, <em>topic</em>, <em>header</em>, <em>fanout</em>。其中<em>header</em>交换机极少使用，本文不做介绍。</p>
-<h2 id="fanout"><a href="#fanout" class="headerlink" title="fanout"></a>fanout</h2><p>&emsp;&emsp;fanout交换机是最简单的交换机，它不会处理RoutingKey，直接将生产者产生的消息’广播’给所有的队列，最终由监听这些队列的消费者将消息消费掉。<br>&nbsp;</p>
-<div align=center><img src="https://www.hualigs.cn/image/605c4a4e880b6.jpg" width="400" height="200"></div>
-
-<h2 id="direct"><a href="#direct" class="headerlink" title="direct"></a>direct</h2><p>&emsp;&emsp;不同于fanout的广播模式，direct交换机将根据每一条消息的RoutingKey决定他们应当进入的队列。<br>&nbsp;</p>
-<div align=center><img src="https://www.hualigs.cn/image/605c4aae5011f.jpg" width="400"  height="200"></div>
-
-<h2 id="topic"><a href="#topic" class="headerlink" title="topic"></a>topic</h2><p>&emsp;&emsp;direct交换机的确为我们处理消息的去向提供了便利，但当队列增多时，RoutingKey自然也会增多，管理这些RoutingKey也会越来越困难。topic交换机通过引入<em>通配符</em>的方式解决了这一问题。<br>&emsp;&emsp;我们以 . 将RoutingKey划分为数个单词，<br>&emsp;&emsp;<strong>*</strong> 代表一个单词。<br>&emsp;&emsp;<strong>#</strong> 代表0个或多个单词。<br>&emsp;&emsp;值得注意：一条消息通过RoutingKey与同一条队列多次匹配时，topic交换机和direct交换机都只会向该队列发送一次该消息。<br>&nbsp;</p>
-<div align=center><img src="https://www.hualigs.cn/image/605c4aba86e58.jpg" width="400" height="200"></div>
-
-<h1 id="RabbitMq配置"><a href="#RabbitMq配置" class="headerlink" title="RabbitMq配置"></a>RabbitMq配置</h1><p>&emsp;&emsp;使用RabbitMq前需要对其进行配置，首先是引入依赖，配置相关参数。</p>
-<h2 id="AMQP依赖"><a href="#AMQP依赖" class="headerlink" title="AMQP依赖"></a>AMQP依赖</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;spring-boot-starter-amqp&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="SpringBoot-yml配置"><a href="#SpringBoot-yml配置" class="headerlink" title="SpringBoot .yml配置"></a>SpringBoot .yml配置</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">Spring:</span><br><span class="line">    rabbitmq:</span><br><span class="line">    # 服务器</span><br><span class="line">    host: <span class="number">10.104</span>.<span class="number">2.234</span></span><br><span class="line">    # 用户</span><br><span class="line">    username: guest</span><br><span class="line">    password: guest</span><br><span class="line">    # 虚拟主机</span><br><span class="line">    virtual-host: /</span><br><span class="line">    # 端口</span><br><span class="line">    port: <span class="number">5672</span></span><br><span class="line"></span><br><span class="line">    listener:</span><br><span class="line">      simple:</span><br><span class="line">        # 消费者最小数量</span><br><span class="line">        concurrency: <span class="number">10</span></span><br><span class="line">        # 消费者最大数量</span><br><span class="line">        max-concurrency: <span class="number">10</span></span><br><span class="line">        # 限制消费者每次只处理一条消息，处理完再继续下一条</span><br><span class="line">        prefetch: <span class="number">1</span></span><br><span class="line">        # 默认启动时启动容器</span><br><span class="line">        auto-startup: <span class="keyword">true</span></span><br><span class="line">        # 当消息被拒绝时，重新进入队列</span><br><span class="line">        <span class="keyword">default</span>-requeue-rejected: <span class="keyword">true</span></span><br><span class="line"></span><br><span class="line">    template:</span><br><span class="line">      retry:</span><br><span class="line">        # 发布重试，默认 false</span><br><span class="line">        enabled: <span class="keyword">true</span></span><br><span class="line">        # 重试时间 默认 1000 ms</span><br><span class="line">        initial-interval: <span class="number">1000</span>ms</span><br><span class="line">        # 重试次数 默认 3</span><br><span class="line">        max-attempts: <span class="number">3</span></span><br><span class="line">        # 重试最大时间 默认 1000 ms</span><br><span class="line">        max-interval: <span class="number">1000</span>ms</span><br><span class="line">        # 重试的间隔乘数 （第一次1秒，第二次2秒，第三次4秒）</span><br><span class="line">        multiplier: <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;创建<strong>RabbitMQConfig.java配置类</strong>对队列结构，传输的序列化与反序列化进行设定。</p>
-<h2 id="队列与交换机"><a href="#队列与交换机" class="headerlink" title="队列与交换机"></a>队列与交换机</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.amqp.core.*;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RabbitMQConfig</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String QUEUE01 = <span class="string">&quot;queue01&quot;</span>;     <span class="comment">// 队列1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String EXCHANGE01 = <span class="string">&quot;fanoutExchange&quot;</span>;  <span class="comment">// fanout 交换机</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String EXCHANGE02 = <span class="string">&quot;directExchange&quot;</span>;  <span class="comment">// direct 交换机</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String EXCHANGE03 = <span class="string">&quot;topicExchange&quot;</span>;   <span class="comment">// direct 交换机</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String ROUTINGKEY01 = <span class="string">&quot;queue.red&quot;</span>;     <span class="comment">// 路由键1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String ROUTINGKEY03 = <span class="string">&quot;*.orange.*&quot;</span>;   <span class="comment">// 路由键3(通配符)</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//创建队列</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Queue <span class="title">queue01</span><span class="params">()</span></span>&#123; <span class="keyword">return</span> <span class="keyword">new</span> Queue(QUEUE01); &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//创建交换机</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> FanoutExchange <span class="title">fanoutExchange</span><span class="params">()</span></span>&#123; <span class="keyword">return</span> <span class="keyword">new</span> FanoutExchange(EXCHANGE01); &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> DirectExchange <span class="title">directExchange</span><span class="params">()</span></span>&#123; <span class="keyword">return</span> <span class="keyword">new</span> DirectExchange(EXCHANGE02); &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> TopicExchange <span class="title">topicExchange</span><span class="params">()</span></span>&#123; <span class="keyword">return</span> <span class="keyword">new</span> TopicExchange(EXCHANGE03); &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//将队列通过RoutingKey绑定到交换机</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Binding <span class="title">binding01</span><span class="params">()</span></span>&#123; <span class="keyword">return</span> BindingBuilder.bind(queue01()).to(fanoutExchange()); &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Binding <span class="title">binding01</span><span class="params">()</span></span>&#123; <span class="keyword">return</span> BindingBuilder.bind(queue01()).to(directExchange()).with(ROUTINGKEY01); &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Binding <span class="title">binding01</span><span class="params">()</span></span>&#123; <span class="keyword">return</span> BindingBuilder.bind(queue01()).to(topicExchange()).with(ROUTINGKEY03); &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="序列化与反序列化"><a href="#序列化与反序列化" class="headerlink" title="序列化与反序列化"></a>序列化与反序列化</h2><p>&emsp;&emsp;Java实体想要通过RabbitMq传输必须经过序列化，考虑到实际中的应用服务不一定都是java编写的，所以我们一般会将Java实体序列化为Jason串进行传输，在消费者应用中再将Jason串反序列化为Java实体。配置时需要我们的配置类实现<strong>RabbitListenerConfigurer</strong>接口。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.amqp.core.*;</span><br><span class="line"><span class="keyword">import</span> org.springframework.amqp.rabbit.annotation.RabbitListenerConfigurer;</span><br><span class="line"><span class="keyword">import</span> org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.amqp.rabbit.connection.ConnectionFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.amqp.rabbit.core.RabbitTemplate;</span><br><span class="line"><span class="keyword">import</span> org.springframework.amqp.rabbit.listener.RabbitListenerEndpointRegistrar;</span><br><span class="line"><span class="keyword">import</span> org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;</span><br><span class="line"><span class="keyword">import</span> org.springframework.amqp.support.converter.MessageConverter;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.messaging.converter.MappingJackson2MessageConverter;</span><br><span class="line"><span class="keyword">import</span> org.springframework.messaging.handler.annotation.support.DefaultMessageHandlerMethodFactory;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RabbitMQConfig</span> <span class="keyword">implements</span> <span class="title">RabbitListenerConfigurer</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//配置RabbitMQ消息服务</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">public</span> ConnectionFactory connectionFactory;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> DefaultMessageHandlerMethodFactory <span class="title">myHandlerMethodFactory</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        DefaultMessageHandlerMethodFactory factory = <span class="keyword">new</span> DefaultMessageHandlerMethodFactory();</span><br><span class="line">        <span class="comment">// 这里的转换器设置实现了 通过 @Payload 注解 自动反序列化message body</span></span><br><span class="line">        factory.setMessageConverter(<span class="keyword">new</span> MappingJackson2MessageConverter());</span><br><span class="line">        <span class="keyword">return</span> factory;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configureRabbitListeners</span><span class="params">(RabbitListenerEndpointRegistrar registrar)</span> </span>&#123;</span><br><span class="line">        registrar.setMessageHandlerMethodFactory(myHandlerMethodFactory());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> SimpleRabbitListenerContainerFactory <span class="title">rabbitListenerContainerFactory</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        SimpleRabbitListenerContainerFactory factory = <span class="keyword">new</span> SimpleRabbitListenerContainerFactory();</span><br><span class="line">        factory.setConnectionFactory(connectionFactory);</span><br><span class="line">        factory.setConcurrentConsumers(<span class="number">3</span>);</span><br><span class="line">        factory.setMaxConcurrentConsumers(<span class="number">10</span>);</span><br><span class="line">        <span class="keyword">return</span> factory;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> MessageConverter <span class="title">jsonMessageConverter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Jackson2JsonMessageConverter();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> RabbitTemplate <span class="title">rabbitTemplate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        RabbitTemplate template = <span class="keyword">new</span> RabbitTemplate(connectionFactory);</span><br><span class="line">        <span class="comment">// 这里的转换器设置实现了发送消息时自动序列化消息对象为message body</span></span><br><span class="line">        template.setMessageConverter(jsonMessageConverter());</span><br><span class="line">        <span class="keyword">return</span> template;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h1><h2 id="待传输的实体类"><a href="#待传输的实体类" class="headerlink" title="待传输的实体类"></a>待传输的实体类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Order</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(String id)</span> </span>&#123; <span class="keyword">this</span>.id = id; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getId</span><span class="params">()</span></span>&#123; <span class="keyword">return</span> <span class="keyword">this</span>.id; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Sender"><a href="#Sender" class="headerlink" title="Sender"></a>Sender</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.springframework.amqp.rabbit.core.RabbitTemplate;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MQSender</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RabbitTemplate rabbitTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sendTopic01</span><span class="params">(Object msg)</span></span>&#123;</span><br><span class="line">        log.info(<span class="string">&quot;发送 QUEUE01 消息： &quot;</span> + msg);</span><br><span class="line">        rabbitTemplate.convertAndSend(<span class="string">&quot;topicExchange&quot;</span>, <span class="string">&quot;queue.orange.black&quot;</span>, msg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Receiver"><a href="#Receiver" class="headerlink" title="Receiver"></a>Receiver</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.springframework.amqp.rabbit.annotation.RabbitListener;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.messaging.handler.annotation.Payload;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MQReceiver</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@RabbitListener(queues = &quot;queue01&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">receive01</span><span class="params">(<span class="meta">@Payload</span> Order msg)</span></span>&#123;</span><br><span class="line">        log.info(<span class="string">&quot;QUEUE01接收消息： &quot;</span> + msg);</span><br><span class="line">        System.out.println(msg.getId());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RabbitMq/" rel="tag">RabbitMq</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-监视者计划" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2020/09/21/%E7%9B%91%E8%A7%86%E8%80%85%E8%AE%A1%E5%88%92/" class="article-date">
-      <time datetime="2020-09-21T05:53:44.000Z" itemprop="datePublished">2020-09-21</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+            <a  href="/2021/03/29/Spring%E6%95%B4%E5%90%88Mybatis/" title="上一篇: Spring整合Mybatis">
+                <i class="fa fa-angle-left"></i>
+            </a>
         
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2020/09/21/%E7%9B%91%E8%A7%86%E8%80%85%E8%AE%A1%E5%88%92/">监听者计划</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>对目标网页的特定内容进行监控，一旦内容变化，则通过电子邮件向用户汇报。（以北理内网访问志愿服务申请页面为例）</p>
-<img src="https://i.loli.net/2020/09/21/9fHOhx7wYWEZ3bX.png" width = "600"  alt="" align=center />
-
-<p>每1-3秒监听一次，若有新活动发布第一时间通过163邮箱向管理员发送通知。</p>
-<hr>
-<h2 id="监视者"><a href="#监视者" class="headerlink" title="监视者"></a>监视者</h2><p>借助Python的Requests包实现爬虫对目标网页进行爬取，提取感兴趣信息</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">res = requests.get(<span class="string">&quot;http://10.104.0.225/plugin.php?id=xj_event:event_list&amp;pc=1&quot;</span>)</span><br><span class="line">soup = bs4.BeautifulSoup(res.text, <span class="string">&quot;html.parser&quot;</span>)</span><br><span class="line">targets = soup.find_all(<span class="string">&quot;a&quot;</span>, class_=<span class="string">&quot;xj_h&quot;</span>)</span><br><span class="line">resent = [each.span.text <span class="keyword">for</span> each <span class="keyword">in</span> targets]</span><br></pre></td></tr></table></figure>
-<p>将resent与历史记录对照即可得知是否有新增的志愿服务活动。</p>
-<hr>
-<h2 id="告密者"><a href="#告密者" class="headerlink" title="告密者"></a>告密者</h2><p>借助网易的免费SMTP服务，实现自动的邮件发送。<br>首先需要进入自己的163邮箱打开，SMTP服务，并记录授权码。<br><img src="https://i.loli.net/2020/09/21/wVl63nGdzvuDAJL.png" width = "600"  alt="" align=center /></p>
-<img src="https://i.loli.net/2020/09/21/JzSQiatHp6VsUR4.png" width = "600"  alt="" align=center />
-
-<p>网易SMTP服务端口为465/994</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 发件服务器地址</span></span><br><span class="line">host = <span class="string">&quot;smtp.163.com&quot;</span></span><br><span class="line"><span class="comment"># 发件服务器端口</span></span><br><span class="line">port = 465</span><br><span class="line"><span class="comment"># 发件箱</span></span><br><span class="line">sender = <span class="string">&quot;XXX@163.com&quot;</span></span><br><span class="line"><span class="comment"># 授权码</span></span><br><span class="line"><span class="built_in">pwd</span> = <span class="string">&quot;xxx&quot;</span></span><br><span class="line"><span class="comment"># 收件箱</span></span><br><span class="line">receiver = <span class="string">&quot;XXX@XX.com&quot;</span></span><br><span class="line"><span class="comment"># 邮件内容</span></span><br><span class="line">body = <span class="string">&quot;XXXX&quot;</span></span><br><span class="line"><span class="comment"># 设置符合邮件格式的HTML内容</span></span><br><span class="line">msg = MIMEText(body, <span class="string">&#x27;html&#x27;</span>)</span><br><span class="line"><span class="comment"># 邮件标题</span></span><br><span class="line">msg[<span class="string">&#x27;subject&#x27;</span>] = <span class="string">&#x27;XXX&#x27;</span></span><br><span class="line"></span><br><span class="line">msg[<span class="string">&#x27;from&#x27;</span>] = sender</span><br><span class="line">msg[<span class="string">&#x27;to&#x27;</span>] = receiver</span><br><span class="line"></span><br><span class="line">try:</span><br><span class="line">	s = smtplib.SMTP_SSL(host, port)</span><br><span class="line">	<span class="comment"># 登录邮箱</span></span><br><span class="line">	s.login(sender, <span class="built_in">pwd</span>)</span><br><span class="line">	<span class="comment"># 发送邮件</span></span><br><span class="line">	s.sendmail(sender, receiver, msg.as_string())</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">&quot;Done.sent email success&quot;</span>)</span><br><span class="line">except smtplib.SMTPException:</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">&quot;Error.sent email fail&quot;</span>)</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本项目基于内网访问，爬虫几乎不需要伪装，外网访问可能由于防火墙等问题无法复现。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SMTP/" rel="tag">SMTP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E9%A1%B5%E7%9B%91%E5%90%AC/" rel="tag">网页监听</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-hexo博客搭建" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2020/09/07/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" class="article-date">
-      <time datetime="2020-09-07T04:27:25.000Z" itemprop="datePublished">2020-09-07</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2020/09/07/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">hexo博客搭建</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>系统环境：Ununtu 20.04</p>
-<h2 id="一、安装nodejs"><a href="#一、安装nodejs" class="headerlink" title="一、安装nodejs"></a>一、安装nodejs</h2><p>终端输入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nodejs</span><br><span class="line">sudo apt-get install npm</span><br></pre></td></tr></table></figure>
-<p>这样安装的nodejs很有可能不是最新版本，接下来需要利用npm安装n管理器对版本进行更新</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install n -g</span><br><span class="line">sudo n stable</span><br></pre></td></tr></table></figure>
-<p>最后可以通过 </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo node -v</span><br><span class="line">sudo npm -v </span><br></pre></td></tr></table></figure>
-<p>来验证安装成功或查看版本<br>ps:可以通过 n 管理器指定安装版本,如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo n v0.10.26</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="二、安装hexo框架"><a href="#二、安装hexo框架" class="headerlink" title="二、安装hexo框架"></a>二、安装hexo框架</h2><p>终端输入</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<p>即可完成安装<br>输入</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo hexo -v</span><br></pre></td></tr></table></figure>
-<p>可以验证或查看版本。</p>
-<hr>
-<h2 id="三、初始化以及新建博文"><a href="#三、初始化以及新建博文" class="headerlink" title="三、初始化以及新建博文"></a>三、初始化以及新建博文</h2><p>新建文件夹blog(所有博客内容均在此文件夹下)<br>进入blog,启动终端</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo hexo init</span><br></pre></td></tr></table></figure>
-<p>完成博客初始化，若clone出错，有可能是因为没有git，安装git即可<br>终端输入</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo hexo n <span class="string">&quot;博文名称&quot;</span></span><br></pre></td></tr></table></figure>
-<p>hexo会自动在 ~/blog/source/_posts 下新建一篇博文，可以通过vim等工具对其进行编辑</p>
-<hr>
-<h2 id="四、预览"><a href="#四、预览" class="headerlink" title="四、预览"></a>四、预览</h2><p>blog文件夹下启动</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo hexo clean</span><br><span class="line">sudo hexo g</span><br><span class="line">sudo hexo s</span><br></pre></td></tr></table></figure>
-<p>即可在本地4000端口预览博客，浏览器输入：localhost:4000。</p>
-<hr>
-<h2 id="五、部署至github"><a href="#五、部署至github" class="headerlink" title="五、部署至github"></a>五、部署至github</h2><p>注册github账号后，新建一个repository。<br><img src="https://i.loli.net/2020/09/05/YLepyEQbndTKOl3.png"><br>注意：repository name 必须与用户昵称保持一致。<br>blog文件夹下启动终端，安装插件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
-<p>打开~/blog/_config.yml,对文件最底部的 #Deployment 进行修改。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/one-command-deployment</span></span><br><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repo: https://github.com/ytflyhw/ytflyhw.github.io.git (仓库地址)</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-
-<p>最后在blog文件夹下终端输入_</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-<p>第一次部署可能需要验证github账户的昵称以及邮箱，按照提示输入指令即可，之后每次部署需要输入账号以及密码。<br>成功后，浏览器输入<a target="_blank" rel="noopener" href="https://ytflyhw.github.io/">https://ytflyhw.github.io</a> （仓库名）即可访问博客。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2020/09/02/hello-world/" class="article-date">
-      <time datetime="2020-09-02T07:24:27.807Z" itemprop="datePublished">2020-09-02</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+            <a  href="/2021/03/27/lombok%E6%B3%A8%E8%A7%A3%E4%BD%BF%E7%94%A8/" title="下一篇: lombok注解使用">
+                <i class="fa fa-angle-right"></i>
+            </a>
         
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2020/09/02/hello-world/">Hello World</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
     </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2021/03/29/Spring%E6%95%B4%E5%90%88Mybatis/">Spring整合Mybatis</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/28/Spring-%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9A%84%E6%98%A5%E5%A4%A9/">Spring-软件开发的春天</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/27/lombok%E6%B3%A8%E8%A7%A3%E4%BD%BF%E7%94%A8/">lombok注解使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/26/JMeter%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95/">JMeter压力测试</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/25/RabbitMq-%E7%AC%94%E8%AE%B0/">RabbitMq 笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/09/21/%E7%9B%91%E8%A7%86%E8%80%85%E8%AE%A1%E5%88%92/">监听者计划</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/09/07/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">hexo博客搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/09/02/hello-world/">Hello World</a></li></ul>
     
-    <div class="article-info article-info-index">
-      
-      
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
 
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
 
 
 
 
-
-
-
-
-
-
-
-  
-  
+    <script>
+        
+    </script>
 
 </div>
       <footer id="footer">
