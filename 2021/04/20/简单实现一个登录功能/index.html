@@ -7,22 +7,26 @@
   
   
   
-  <title>lombok注解使用 | Hexo</title>
+  <title>简单实现一个登录功能 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="&amp;emsp;&amp;emsp;创建一个类往往需要编写这个类的各种构造方法，各个属性的set&#x2F;get方法，以及重写Object中的方法；而lombok可以让这一切变得简单。只需要再pom文件中引入相关依赖，即可使用一行注解替换大段代码。 @Getter&#x2F;@Setter&amp;emsp;&amp;emsp;作用于成员变量，生成该变量的get&#x2F;set方法；&amp;emsp;&amp;emsp;作用于类，生成该类所有成员变量的get&#x2F;se">
+  <meta name="description" content="本文主要解决两个问题：  分布式系统中如何同步登录信息； 系统业务如何明确当前的登录用户。  分布式系统同步用户信息在分布式系统中，负载均衡器可能将同一用户不同阶段的操作分配到不同的Tomcat上，这就要求这些Tomcat均能够读取到用户的登录信息。我们当然可以通过复制的方式解决这一问题，但这无疑是十分浪费资源的。此外我们还可以使用一台独立的服务器专门存储用户的登录信息，其他Tomcat执行需要登">
 <meta property="og:type" content="article">
-<meta property="og:title" content="lombok注解使用">
-<meta property="og:url" content="http://example.com/2021/03/27/lombok%E6%B3%A8%E8%A7%A3%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:title" content="简单实现一个登录功能">
+<meta property="og:url" content="http://example.com/2021/04/20/%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="&amp;emsp;&amp;emsp;创建一个类往往需要编写这个类的各种构造方法，各个属性的set&#x2F;get方法，以及重写Object中的方法；而lombok可以让这一切变得简单。只需要再pom文件中引入相关依赖，即可使用一行注解替换大段代码。 @Getter&#x2F;@Setter&amp;emsp;&amp;emsp;作用于成员变量，生成该变量的get&#x2F;set方法；&amp;emsp;&amp;emsp;作用于类，生成该类所有成员变量的get&#x2F;se">
+<meta property="og:description" content="本文主要解决两个问题：  分布式系统中如何同步登录信息； 系统业务如何明确当前的登录用户。  分布式系统同步用户信息在分布式系统中，负载均衡器可能将同一用户不同阶段的操作分配到不同的Tomcat上，这就要求这些Tomcat均能够读取到用户的登录信息。我们当然可以通过复制的方式解决这一问题，但这无疑是十分浪费资源的。此外我们还可以使用一台独立的服务器专门存储用户的登录信息，其他Tomcat执行需要登">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-03-27T12:03:13.000Z">
-<meta property="article:modified_time" content="2021-03-27T12:48:27.054Z">
+<meta property="og:image" content="https://www.hualigs.cn/image/607e42a8aa070.jpg">
+<meta property="article:published_time" content="2021-04-20T02:16:55.000Z">
+<meta property="article:modified_time" content="2021-04-20T05:59:14.731Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Java">
-<meta property="article:tag" content="lombok">
-<meta property="article:tag" content="注解">
+<meta property="article:tag" content="Spring">
+<meta property="article:tag" content="Redis">
+<meta property="article:tag" content="Cookie">
+<meta property="article:tag" content="参数解析器">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.hualigs.cn/image/607e42a8aa070.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -279,11 +283,11 @@
         </header>
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-lombok注解使用" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-简单实现一个登录功能" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2021/03/27/lombok%E6%B3%A8%E8%A7%A3%E4%BD%BF%E7%94%A8/" class="article-date">
-      <time datetime="2021-03-27T12:03:13.000Z" itemprop="datePublished">2021-03-27</time>
+      <a  href="/2021/04/20/%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD/" class="article-date">
+      <time datetime="2021-04-20T02:16:55.000Z" itemprop="datePublished">2021-04-20</time>
 </a>
 
     </div>
@@ -297,7 +301,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      lombok注解使用
+      简单实现一个登录功能
     </h1>
   
 
@@ -309,7 +313,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lombok/" rel="tag">lombok</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B3%A8%E8%A7%A3/" rel="tag">注解</a></li></ul>
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cookie/" rel="tag">Cookie</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8/" rel="tag">参数解析器</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -319,17 +323,41 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>&emsp;&emsp;创建一个类往往需要编写这个类的各种构造方法，各个属性的set/get方法，以及重写Object中的方法；而lombok可以让这一切变得简单。只需要再pom文件中引入相关依赖，即可使用一行注解替换大段代码。</p>
-<h1 id="Getter-Setter"><a href="#Getter-Setter" class="headerlink" title="@Getter/@Setter"></a>@Getter/@Setter</h1><p>&emsp;&emsp;作用于成员变量，生成该变量的get/set方法；<br>&emsp;&emsp;作用于类，生成该类所有成员变量的get/set方法。</p>
-<h1 id="NonNull"><a href="#NonNull" class="headerlink" title="@NonNull"></a>@NonNull</h1><p>&emsp;&emsp;作用于成员变量，标识该变量不可为空，否则抛出空指针异常；<br>&emsp;&emsp;作用于成员方法的参数，标识调用该方法时，该参数不可为空，否则抛出空指针异常。</p>
-<h1 id="NoArgsConstructor-AllArgsConstructor"><a href="#NoArgsConstructor-AllArgsConstructor" class="headerlink" title="@NoArgsConstructor/@AllArgsConstructor"></a>@NoArgsConstructor/@AllArgsConstructor</h1><p>&emsp;&emsp;作用于类，生成该类的无参构造/全参构造。</p>
-<h1 id="RequiredArgsConstructor"><a href="#RequiredArgsConstructor" class="headerlink" title="@RequiredArgsConstructor"></a>@RequiredArgsConstructor</h1><p>&emsp;&emsp;作用于类，生成所有被fianl或@NonNull修饰的成员变量的构造方法。</p>
-<h1 id="ToString"><a href="#ToString" class="headerlink" title="@ToString"></a>@ToString</h1><p>&emsp;&emsp;作用于类，重写toString()方法，可以通过of指定要使用的成员变量，也可以通过exclude指定不使用的成员变量。<br>&emsp;&emsp;例如：@ToString(of={“param1”,”param2”})或@ToString(exclude={“param1”,”param2”})</p>
-<h1 id="EqualsAndHashCode"><a href="#EqualsAndHashCode" class="headerlink" title="@EqualsAndHashCode"></a>@EqualsAndHashCode</h1><p>&emsp;&emsp;作用于类，重写equals()和hashcode(),可以通过of指定要使用的成员变量，也可以通过exclude指定不使用的成员变量。</p>
-<h1 id="Data"><a href="#Data" class="headerlink" title="@Data"></a>@Data</h1><p>&emsp;&emsp;作用于类，是@Getter，@Setter，@ToString，@EqualsAndHashCode，@RequiredArgsConstructor的集合。</p>
-<h1 id="Value"><a href="#Value" class="headerlink" title="@Value"></a>@Value</h1><p>&emsp;&emsp;作用于类，类似于@Data，但默认所有成员变量都由”private final”修饰，因而不会生成set方法。</p>
-<h1 id="Cleanup"><a href="#Cleanup" class="headerlink" title="@Cleanup"></a>@Cleanup</h1><p>&emsp;&emsp;作用于资源变量，标识该资源会被自动关闭，默认调用close()方法，也可以通过@Cleanup(“methodName”)指定要调用的方法。<br>&emsp;&emsp;例如： @Cleanup InputStream in = new FileInputStream();</p>
-<h1 id="SneakyThrows"><a href="#SneakyThrows" class="headerlink" title="@SneakyThrows"></a>@SneakyThrows</h1><p>&emsp;&emsp;作用于方法，相当于try-catch语句包，捕获异常并在catch中用Lombok.sneakyThrow(e)把异常抛出，可以通过@SneakyThrows(Exception.class)指定抛出的异常类型。</p>
+        <p>本文主要解决两个问题：</p>
+<ul>
+<li>分布式系统中如何同步登录信息；</li>
+<li>系统业务如何明确当前的登录用户。</li>
+</ul>
+<h1 id="分布式系统同步用户信息"><a href="#分布式系统同步用户信息" class="headerlink" title="分布式系统同步用户信息"></a>分布式系统同步用户信息</h1><p>在分布式系统中，负载均衡器可能将同一用户不同阶段的操作分配到不同的Tomcat上，这就要求这些Tomcat均能够读取到用户的登录信息。我们当然可以通过复制的方式解决这一问题，但这无疑是十分浪费资源的。此外我们还可以使用一台独立的服务器专门存储用户的登录信息，其他Tomcat执行需要登录信息的业务时，与该服务器同步信息即可。这种方式就对这台服务器的读写速度提出了较高的要求，基于内存的Redis是个不错的选择。</p>
+<img src="https://www.hualigs.cn/image/607e42a8aa070.jpg" alin=center/>
+
+<h1 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h1><p>Cookie是由服务端产生的，产生后发送给客户端的一种“键值对”缓存文件。我们可以借此在用户登录的时候生成一个</p>
+<ul>
+<li><p>key = “UserTickets”  </p>
+</li>
+<li><p>value = ticket（通过UUID生成）</p>
+</li>
+</ul>
+<p>的Cookie存放在客户端，同时向Redis写入一条记录：</p>
+<ul>
+<li>key = “user” + ticket</li>
+<li>value = user（数据库中的完整用户信息）</li>
+</ul>
+<p>在后续操作中，无论哪个Tomcat执行业务，均通过Cookie去获取当前访问的ticket，再依据该ticket查询Redis判断用户是否登录，操作对应于哪个用户。</p>
+<p><em>CookieUtil以及UUidUtil代码详见：<a target="_blank" rel="noopener" href="https://github.com/ytflyhw/CookieUtil">https://github.com/ytflyhw/CookieUtil</a></em></p>
+<h1 id="参数解析器"><a href="#参数解析器" class="headerlink" title="参数解析器"></a>参数解析器</h1><p>每类需要User信息的业务都要编写一段获取Cookie，访问Redis的代码，这未免过于繁琐，SpringMVC提供的参数解析器（HandlerMethodArgumentResolver）可以很好的简化这一过程。</p>
+<p>HandlerMethodArgumentResolver主要包含两个接口方法：</p>
+<h3 id="supportsParameter"><a href="#supportsParameter" class="headerlink" title="supportsParameter"></a>supportsParameter</h3><p>返回boolean类型，作用是判断Controller层中的参数是否符合条件，符合条件则执行resolveArgument方法，不符合则跳过。</p>
+<p>我们可以通过执行getParameterAnnotations()判断是否包含特定注解类型，然后使用这种注解标注需要执行resolveArgument方法的参数。或者干脆使用getParameterType()判断是否为特定变量类型。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">supportsParameter</span><span class="params">(MethodParameter methodParameter)</span> </span>&#123;</span><br><span class="line">    Class&lt;?&gt; clazz = methodParameter.getParameterType();</span><br><span class="line">    <span class="keyword">return</span> clazz == User.class;</span><br></pre></td></tr></table></figure>
+
+<h3 id="resolveArgument"><a href="#resolveArgument" class="headerlink" title="resolveArgument"></a>resolveArgument</h3><p>实际的业务处理逻辑，只有在supportsParameter返回true时才执行，返回值将赋值给Controller层中的这个参数。</p>
+<p>我们可以在这个方法中编写通过Cookie获取ticket的代码逻辑。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">resolveArgument</span><span class="params">(MethodParameter methodParameter, ModelAndViewContainer modelAndViewContainer, NativeWebRequest nativeWebRequest, WebDataBinderFactory webDataBinderFactory)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    HttpServletRequest request = nativeWebRequest.getNativeRequest(HttpServletRequest.class);</span><br><span class="line">    HttpServletResponse response = nativeWebRequest.getNativeResponse(HttpServletResponse.class);</span><br><span class="line">    String ticket = CookieUtil.getCookieValue(request, <span class="string">&quot;userTicket&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span>(StringUtils.isEmpty(ticket))&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> userService.getUserByCookie(ticket, request, response);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>getUserByCookie逻辑如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserServiceImpl</span> <span class="keyword">extends</span> <span class="title">ServiceImpl</span>&lt;<span class="title">UserMapper</span>, <span class="title">User</span>&gt; <span class="keyword">implements</span> <span class="title">IUserService</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RedisTemplate redisTemplate;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">getUserByCookie</span><span class="params">(String userTicket, HttpServletRequest request, HttpServletResponse response)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(StringUtils.isEmpty(userTicket))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        User user = (User) redisTemplate.opsForValue().get(<span class="string">&quot;user:&quot;</span> + userTicket);</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">null</span> != user)&#123;</span><br><span class="line">            CookieUtil.setCookie(request, response, <span class="string">&quot;userTicket&quot;</span>, userTicket);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> user;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -338,13 +366,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a  href="/2021/03/27/lombok%E6%B3%A8%E8%A7%A3%E4%BD%BF%E7%94%A8/">lombok注解使用</a></p>
+        <p><span>本文标题:</span><a  href="/2021/04/20/%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD/">简单实现一个登录功能</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问  的个人博客"></a></p>
-        <p><span>发布时间:</span>2021年03月27日 - 20时03分</p>
-        <p><span>最后更新:</span>2021年03月27日 - 20时48分</p>
+        <p><span>发布时间:</span>2021年04月20日 - 10时16分</p>
+        <p><span>最后更新:</span>2021年04月20日 - 13时59分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2021/03/27/lombok%E6%B3%A8%E8%A7%A3%E4%BD%BF%E7%94%A8/" title="lombok注解使用">http://example.com/2021/03/27/lombok%E6%B3%A8%E8%A7%A3%E4%BD%BF%E7%94%A8/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://example.com/2021/03/27/lombok%E6%B3%A8%E8%A7%A3%E4%BD%BF%E7%94%A8/　　作者: " title=""></span>
+            <span>原始链接:</span><a class="post-url" href="/2021/04/20/%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD/" title="简单实现一个登录功能">http://example.com/2021/04/20/%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://example.com/2021/04/20/%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD/　　作者: " title=""></span>
         </p>
         <p>
             <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
@@ -355,18 +383,9 @@
 
 <nav id="article-nav">
   
-    <a  href="/2021/03/28/Spring-%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9A%84%E6%98%A5%E5%A4%A9/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Spring-软件开发的春天
-        
-      </div>
-    </a>
   
-  
-    <a  href="/2021/03/26/JMeter%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">JMeter压力测试</div>
+    <a  href="/2021/04/10/Linux%E4%B8%AD%E7%9A%84fork()%E5%87%BD%E6%95%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux中的fork()函数</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -378,7 +397,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Getter-Setter"><span class="toc-number">1.</span> <span class="toc-text">@Getter&#x2F;@Setter</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#NonNull"><span class="toc-number">2.</span> <span class="toc-text">@NonNull</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#NoArgsConstructor-AllArgsConstructor"><span class="toc-number">3.</span> <span class="toc-text">@NoArgsConstructor&#x2F;@AllArgsConstructor</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RequiredArgsConstructor"><span class="toc-number">4.</span> <span class="toc-text">@RequiredArgsConstructor</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ToString"><span class="toc-number">5.</span> <span class="toc-text">@ToString</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#EqualsAndHashCode"><span class="toc-number">6.</span> <span class="toc-text">@EqualsAndHashCode</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Data"><span class="toc-number">7.</span> <span class="toc-text">@Data</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Value"><span class="toc-number">8.</span> <span class="toc-text">@Value</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Cleanup"><span class="toc-number">9.</span> <span class="toc-text">@Cleanup</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SneakyThrows"><span class="toc-number">10.</span> <span class="toc-text">@SneakyThrows</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%90%8C%E6%AD%A5%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="toc-number">1.</span> <span class="toc-text">分布式系统同步用户信息</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Cookie"><span class="toc-number">2.</span> <span class="toc-text">Cookie</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8"><span class="toc-number">3.</span> <span class="toc-text">参数解析器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#supportsParameter"><span class="toc-number">3.0.1.</span> <span class="toc-text">supportsParameter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#resolveArgument"><span class="toc-number">3.0.2.</span> <span class="toc-text">resolveArgument</span></a></li></ol></li></ol></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -451,13 +470,11 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a  href="/2021/03/28/Spring-%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9A%84%E6%98%A5%E5%A4%A9/" title="上一篇: Spring-软件开发的春天">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a  href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a  href="/2021/03/26/JMeter%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95/" title="下一篇: JMeter压力测试">
+            <a  href="/2021/04/10/Linux%E4%B8%AD%E7%9A%84fork()%E5%87%BD%E6%95%B0/" title="下一篇: Linux中的fork()函数">
                 <i class="fa fa-angle-right"></i>
             </a>
         

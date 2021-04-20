@@ -7,21 +7,19 @@
   
   
   
-  <title>lombok注解使用 | Hexo</title>
+  <title>Linux中的fork()函数 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="&amp;emsp;&amp;emsp;创建一个类往往需要编写这个类的各种构造方法，各个属性的set&#x2F;get方法，以及重写Object中的方法；而lombok可以让这一切变得简单。只需要再pom文件中引入相关依赖，即可使用一行注解替换大段代码。 @Getter&#x2F;@Setter&amp;emsp;&amp;emsp;作用于成员变量，生成该变量的get&#x2F;set方法；&amp;emsp;&amp;emsp;作用于类，生成该类所有成员变量的get&#x2F;se">
+  <meta name="description" content="一个进程，包括代码、数据和分配给进程的资源。fork（）函数通过系统调用创建一个与原来进程几乎完全相同的进程，也就是两个进程可以做完全相同的事。一个进程调用fork（）函数后，系统先给新的进程分配资源，例如存储数据和代码的空间。然后把原来的进程的所有值都复制到新的新进程中，只有少数值与原来的进程的值不同，相当于克隆了一个自己。 12345678910111213141516171819202122">
 <meta property="og:type" content="article">
-<meta property="og:title" content="lombok注解使用">
-<meta property="og:url" content="http://example.com/2021/03/27/lombok%E6%B3%A8%E8%A7%A3%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:title" content="Linux中的fork()函数">
+<meta property="og:url" content="http://example.com/2021/04/10/Linux%E4%B8%AD%E7%9A%84fork()%E5%87%BD%E6%95%B0/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="&amp;emsp;&amp;emsp;创建一个类往往需要编写这个类的各种构造方法，各个属性的set&#x2F;get方法，以及重写Object中的方法；而lombok可以让这一切变得简单。只需要再pom文件中引入相关依赖，即可使用一行注解替换大段代码。 @Getter&#x2F;@Setter&amp;emsp;&amp;emsp;作用于成员变量，生成该变量的get&#x2F;set方法；&amp;emsp;&amp;emsp;作用于类，生成该类所有成员变量的get&#x2F;se">
+<meta property="og:description" content="一个进程，包括代码、数据和分配给进程的资源。fork（）函数通过系统调用创建一个与原来进程几乎完全相同的进程，也就是两个进程可以做完全相同的事。一个进程调用fork（）函数后，系统先给新的进程分配资源，例如存储数据和代码的空间。然后把原来的进程的所有值都复制到新的新进程中，只有少数值与原来的进程的值不同，相当于克隆了一个自己。 12345678910111213141516171819202122">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-03-27T12:03:13.000Z">
-<meta property="article:modified_time" content="2021-03-27T12:48:27.054Z">
+<meta property="article:published_time" content="2021-04-10T07:07:04.000Z">
+<meta property="article:modified_time" content="2021-04-10T03:28:29.606Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="Java">
-<meta property="article:tag" content="lombok">
-<meta property="article:tag" content="注解">
+<meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -279,11 +277,11 @@
         </header>
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-lombok注解使用" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Linux中的fork()函数" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2021/03/27/lombok%E6%B3%A8%E8%A7%A3%E4%BD%BF%E7%94%A8/" class="article-date">
-      <time datetime="2021-03-27T12:03:13.000Z" itemprop="datePublished">2021-03-27</time>
+      <a  href="/2021/04/10/Linux%E4%B8%AD%E7%9A%84fork()%E5%87%BD%E6%95%B0/" class="article-date">
+      <time datetime="2021-04-10T07:07:04.000Z" itemprop="datePublished">2021-04-10</time>
 </a>
 
     </div>
@@ -297,7 +295,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      lombok注解使用
+      Linux中的fork()函数
     </h1>
   
 
@@ -309,7 +307,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lombok/" rel="tag">lombok</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B3%A8%E8%A7%A3/" rel="tag">注解</a></li></ul>
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -319,17 +317,19 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>&emsp;&emsp;创建一个类往往需要编写这个类的各种构造方法，各个属性的set/get方法，以及重写Object中的方法；而lombok可以让这一切变得简单。只需要再pom文件中引入相关依赖，即可使用一行注解替换大段代码。</p>
-<h1 id="Getter-Setter"><a href="#Getter-Setter" class="headerlink" title="@Getter/@Setter"></a>@Getter/@Setter</h1><p>&emsp;&emsp;作用于成员变量，生成该变量的get/set方法；<br>&emsp;&emsp;作用于类，生成该类所有成员变量的get/set方法。</p>
-<h1 id="NonNull"><a href="#NonNull" class="headerlink" title="@NonNull"></a>@NonNull</h1><p>&emsp;&emsp;作用于成员变量，标识该变量不可为空，否则抛出空指针异常；<br>&emsp;&emsp;作用于成员方法的参数，标识调用该方法时，该参数不可为空，否则抛出空指针异常。</p>
-<h1 id="NoArgsConstructor-AllArgsConstructor"><a href="#NoArgsConstructor-AllArgsConstructor" class="headerlink" title="@NoArgsConstructor/@AllArgsConstructor"></a>@NoArgsConstructor/@AllArgsConstructor</h1><p>&emsp;&emsp;作用于类，生成该类的无参构造/全参构造。</p>
-<h1 id="RequiredArgsConstructor"><a href="#RequiredArgsConstructor" class="headerlink" title="@RequiredArgsConstructor"></a>@RequiredArgsConstructor</h1><p>&emsp;&emsp;作用于类，生成所有被fianl或@NonNull修饰的成员变量的构造方法。</p>
-<h1 id="ToString"><a href="#ToString" class="headerlink" title="@ToString"></a>@ToString</h1><p>&emsp;&emsp;作用于类，重写toString()方法，可以通过of指定要使用的成员变量，也可以通过exclude指定不使用的成员变量。<br>&emsp;&emsp;例如：@ToString(of={“param1”,”param2”})或@ToString(exclude={“param1”,”param2”})</p>
-<h1 id="EqualsAndHashCode"><a href="#EqualsAndHashCode" class="headerlink" title="@EqualsAndHashCode"></a>@EqualsAndHashCode</h1><p>&emsp;&emsp;作用于类，重写equals()和hashcode(),可以通过of指定要使用的成员变量，也可以通过exclude指定不使用的成员变量。</p>
-<h1 id="Data"><a href="#Data" class="headerlink" title="@Data"></a>@Data</h1><p>&emsp;&emsp;作用于类，是@Getter，@Setter，@ToString，@EqualsAndHashCode，@RequiredArgsConstructor的集合。</p>
-<h1 id="Value"><a href="#Value" class="headerlink" title="@Value"></a>@Value</h1><p>&emsp;&emsp;作用于类，类似于@Data，但默认所有成员变量都由”private final”修饰，因而不会生成set方法。</p>
-<h1 id="Cleanup"><a href="#Cleanup" class="headerlink" title="@Cleanup"></a>@Cleanup</h1><p>&emsp;&emsp;作用于资源变量，标识该资源会被自动关闭，默认调用close()方法，也可以通过@Cleanup(“methodName”)指定要调用的方法。<br>&emsp;&emsp;例如： @Cleanup InputStream in = new FileInputStream();</p>
-<h1 id="SneakyThrows"><a href="#SneakyThrows" class="headerlink" title="@SneakyThrows"></a>@SneakyThrows</h1><p>&emsp;&emsp;作用于方法，相当于try-catch语句包，捕获异常并在catch中用Lombok.sneakyThrow(e)把异常抛出，可以通过@SneakyThrows(Exception.class)指定抛出的异常类型。</p>
+        <p>一个进程，包括代码、数据和分配给进程的资源。fork（）函数通过系统调用创建一个与原来进程几乎完全相同的进程，也就是两个进程可以做完全相同的事。一个进程调用fork（）函数后，系统先给新的进程分配资源，例如存储数据和代码的空间。然后把原来的进程的所有值都复制到新的新进程中，只有少数值与原来的进程的值不同，相当于克隆了一个自己。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">pid_t</span> fpid; <span class="comment">//fpid表示fork函数返回的值</span></span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    fpid = fork();</span><br><span class="line">    <span class="keyword">if</span> (fpid &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;error in fork!&quot;</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (fpid == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;i am the child process, my process id is %d/n&quot;</span>, getpid());</span><br><span class="line">        count++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;i am the parent process, my process id is %d/n&quot;</span>, getpid());</span><br><span class="line">        count++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;统计结果是: %d/n&quot;</span>, count);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果为</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">i am the child <span class="built_in">process</span>, my <span class="built_in">process</span> id is <span class="number">5574</span></span><br><span class="line">统计结果是: <span class="number">1</span></span><br><span class="line">i am the parent <span class="built_in">process</span>, my <span class="built_in">process</span> id is <span class="number">5573</span></span><br><span class="line">统计结果是: <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>从上面的例子中可以看出，这种克隆不是绝对。这是由于fork虽然只调用一次，却可以返回两次，它可能有三种不同的返回值：</p>
+<ul>
+<li>在父进程中，fork返回新创建子进程的进程ID；</li>
+<li>在子进程中，fork返回0；</li>
+<li>如果出现错误，fork返回一个负值（当前进程数达到系统规定的上限，或系统内存不足）。</li>
+</ul>
+<p>当线程完成所有工作后就会“死亡”，如果父线程“死亡”，子线程的父线程就会被置为1，线程1永远不会“死亡”。</p>
 
       
     </div>
@@ -338,13 +338,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a  href="/2021/03/27/lombok%E6%B3%A8%E8%A7%A3%E4%BD%BF%E7%94%A8/">lombok注解使用</a></p>
+        <p><span>本文标题:</span><a  href="/2021/04/10/Linux%E4%B8%AD%E7%9A%84fork()%E5%87%BD%E6%95%B0/">Linux中的fork()函数</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问  的个人博客"></a></p>
-        <p><span>发布时间:</span>2021年03月27日 - 20时03分</p>
-        <p><span>最后更新:</span>2021年03月27日 - 20时48分</p>
+        <p><span>发布时间:</span>2021年04月10日 - 15时07分</p>
+        <p><span>最后更新:</span>2021年04月10日 - 11时28分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2021/03/27/lombok%E6%B3%A8%E8%A7%A3%E4%BD%BF%E7%94%A8/" title="lombok注解使用">http://example.com/2021/03/27/lombok%E6%B3%A8%E8%A7%A3%E4%BD%BF%E7%94%A8/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://example.com/2021/03/27/lombok%E6%B3%A8%E8%A7%A3%E4%BD%BF%E7%94%A8/　　作者: " title=""></span>
+            <span>原始链接:</span><a class="post-url" href="/2021/04/10/Linux%E4%B8%AD%E7%9A%84fork()%E5%87%BD%E6%95%B0/" title="Linux中的fork()函数">http://example.com/2021/04/10/Linux%E4%B8%AD%E7%9A%84fork()%E5%87%BD%E6%95%B0/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://example.com/2021/04/10/Linux%E4%B8%AD%E7%9A%84fork()%E5%87%BD%E6%95%B0/　　作者: " title=""></span>
         </p>
         <p>
             <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
@@ -355,18 +355,18 @@
 
 <nav id="article-nav">
   
-    <a  href="/2021/03/28/Spring-%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9A%84%E6%98%A5%E5%A4%A9/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a  href="/2021/04/20/%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          Spring-软件开发的春天
+          简单实现一个登录功能
         
       </div>
     </a>
   
   
-    <a  href="/2021/03/26/JMeter%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">JMeter压力测试</div>
+    <a  href="/2021/04/02/Mybatis-plus%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Mybatis-plus逆向工程</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -378,7 +378,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Getter-Setter"><span class="toc-number">1.</span> <span class="toc-text">@Getter&#x2F;@Setter</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#NonNull"><span class="toc-number">2.</span> <span class="toc-text">@NonNull</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#NoArgsConstructor-AllArgsConstructor"><span class="toc-number">3.</span> <span class="toc-text">@NoArgsConstructor&#x2F;@AllArgsConstructor</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RequiredArgsConstructor"><span class="toc-number">4.</span> <span class="toc-text">@RequiredArgsConstructor</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ToString"><span class="toc-number">5.</span> <span class="toc-text">@ToString</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#EqualsAndHashCode"><span class="toc-number">6.</span> <span class="toc-text">@EqualsAndHashCode</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Data"><span class="toc-number">7.</span> <span class="toc-text">@Data</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Value"><span class="toc-number">8.</span> <span class="toc-text">@Value</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Cleanup"><span class="toc-number">9.</span> <span class="toc-text">@Cleanup</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SneakyThrows"><span class="toc-number">10.</span> <span class="toc-text">@SneakyThrows</span></a></li></ol>
+    
 </div>
 <style>
     .left-col .switch-btn {
@@ -451,13 +451,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a  href="/2021/03/28/Spring-%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9A%84%E6%98%A5%E5%A4%A9/" title="上一篇: Spring-软件开发的春天">
+            <a  href="/2021/04/20/%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD/" title="上一篇: 简单实现一个登录功能">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a  href="/2021/03/26/JMeter%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95/" title="下一篇: JMeter压力测试">
+            <a  href="/2021/04/02/Mybatis-plus%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/" title="下一篇: Mybatis-plus逆向工程">
                 <i class="fa fa-angle-right"></i>
             </a>
         
