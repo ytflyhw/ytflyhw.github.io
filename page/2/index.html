@@ -198,7 +198,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Cookie/" style="font-size: 10px;">Cookie</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/JMeter/" style="font-size: 10px;">JMeter</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mybatis/" style="font-size: 10px;">Mybatis</a> <a href="/tags/Mybatis-plus/" style="font-size: 10px;">Mybatis-plus</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/RabbitMq/" style="font-size: 10px;">RabbitMq</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SMTP/" style="font-size: 10px;">SMTP</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/lombok/" style="font-size: 10px;">lombok</a> <a href="/tags/%E4%BA%8B%E5%8A%A1/" style="font-size: 10px;">事务</a> <a href="/tags/%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8/" style="font-size: 10px;">参数解析器</a> <a href="/tags/%E6%B3%A8%E8%A7%A3/" style="font-size: 10px;">注解</a> <a href="/tags/%E7%BD%91%E9%A1%B5%E7%9B%91%E5%90%AC/" style="font-size: 10px;">网页监听</a> <a href="/tags/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">逆向工程</a>
+                        <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Cookie/" style="font-size: 10px;">Cookie</a> <a href="/tags/Hash/" style="font-size: 10px;">Hash</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/JMeter/" style="font-size: 10px;">JMeter</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mybatis/" style="font-size: 10px;">Mybatis</a> <a href="/tags/Mybatis-plus/" style="font-size: 10px;">Mybatis-plus</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/RabbitMq/" style="font-size: 10px;">RabbitMq</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SMTP/" style="font-size: 10px;">SMTP</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/lombok/" style="font-size: 10px;">lombok</a> <a href="/tags/%E4%BA%8B%E5%8A%A1/" style="font-size: 10px;">事务</a> <a href="/tags/%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8/" style="font-size: 10px;">参数解析器</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 10px;">多线程</a> <a href="/tags/%E6%B3%A8%E8%A7%A3/" style="font-size: 10px;">注解</a> <a href="/tags/%E6%BA%90%E7%A0%81/" style="font-size: 10px;">源码</a> <a href="/tags/%E7%BD%91%E9%A1%B5%E7%9B%91%E5%90%AC/" style="font-size: 10px;">网页监听</a> <a href="/tags/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">逆向工程</a>
                     </div>
                 </section>
                 
@@ -276,6 +276,97 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-hexo博客搭建" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2020/09/07/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" class="article-date">
+      <time datetime="2020-09-07T04:27:25.000Z" itemprop="datePublished">2020-09-07</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2020/09/07/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">hexo博客搭建</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>系统环境：Ununtu 20.04</p>
+<h2 id="一、安装nodejs"><a href="#一、安装nodejs" class="headerlink" title="一、安装nodejs"></a>一、安装nodejs</h2><p>终端输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nodejs</span><br><span class="line">sudo apt-get install npm</span><br></pre></td></tr></table></figure>
+<p>这样安装的nodejs很有可能不是最新版本，接下来需要利用npm安装n管理器对版本进行更新</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install n -g</span><br><span class="line">sudo n stable</span><br></pre></td></tr></table></figure>
+<p>最后可以通过 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo node -v</span><br><span class="line">sudo npm -v </span><br></pre></td></tr></table></figure>
+<p>来验证安装成功或查看版本<br>ps:可以通过 n 管理器指定安装版本,如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo n v0.10.26</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="二、安装hexo框架"><a href="#二、安装hexo框架" class="headerlink" title="二、安装hexo框架"></a>二、安装hexo框架</h2><p>终端输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<p>即可完成安装<br>输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo hexo -v</span><br></pre></td></tr></table></figure>
+<p>可以验证或查看版本。</p>
+<hr>
+<h2 id="三、初始化以及新建博文"><a href="#三、初始化以及新建博文" class="headerlink" title="三、初始化以及新建博文"></a>三、初始化以及新建博文</h2><p>新建文件夹blog(所有博客内容均在此文件夹下)<br>进入blog,启动终端</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo hexo init</span><br></pre></td></tr></table></figure>
+<p>完成博客初始化，若clone出错，有可能是因为没有git，安装git即可<br>终端输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo hexo n <span class="string">&quot;博文名称&quot;</span></span><br></pre></td></tr></table></figure>
+<p>hexo会自动在 ~/blog/source/_posts 下新建一篇博文，可以通过vim等工具对其进行编辑</p>
+<hr>
+<h2 id="四、预览"><a href="#四、预览" class="headerlink" title="四、预览"></a>四、预览</h2><p>blog文件夹下启动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo hexo clean</span><br><span class="line">sudo hexo g</span><br><span class="line">sudo hexo s</span><br></pre></td></tr></table></figure>
+<p>即可在本地4000端口预览博客，浏览器输入：localhost:4000。</p>
+<hr>
+<h2 id="五、部署至github"><a href="#五、部署至github" class="headerlink" title="五、部署至github"></a>五、部署至github</h2><p>注册github账号后，新建一个repository。<br><img src="https://i.loli.net/2020/09/05/YLepyEQbndTKOl3.png"><br>注意：repository name 必须与用户昵称保持一致。<br>blog文件夹下启动终端，安装插件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
+<p>打开~/blog/_config.yml,对文件最底部的 #Deployment 进行修改。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/one-command-deployment</span></span><br><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repo: https://github.com/ytflyhw/ytflyhw.github.io.git (仓库地址)</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+
+<p>最后在blog文件夹下终端输入_</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<p>第一次部署可能需要验证github账户的昵称以及邮箱，按照提示输入指令即可，之后每次部署需要输入账号以及密码。<br>成功后，浏览器输入<a target="_blank" rel="noopener" href="https://ytflyhw.github.io/">https://ytflyhw.github.io</a> （仓库名）即可访问博客。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   

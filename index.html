@@ -198,7 +198,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Cookie/" style="font-size: 10px;">Cookie</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/JMeter/" style="font-size: 10px;">JMeter</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mybatis/" style="font-size: 10px;">Mybatis</a> <a href="/tags/Mybatis-plus/" style="font-size: 10px;">Mybatis-plus</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/RabbitMq/" style="font-size: 10px;">RabbitMq</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SMTP/" style="font-size: 10px;">SMTP</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/lombok/" style="font-size: 10px;">lombok</a> <a href="/tags/%E4%BA%8B%E5%8A%A1/" style="font-size: 10px;">事务</a> <a href="/tags/%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8/" style="font-size: 10px;">参数解析器</a> <a href="/tags/%E6%B3%A8%E8%A7%A3/" style="font-size: 10px;">注解</a> <a href="/tags/%E7%BD%91%E9%A1%B5%E7%9B%91%E5%90%AC/" style="font-size: 10px;">网页监听</a> <a href="/tags/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">逆向工程</a>
+                        <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Cookie/" style="font-size: 10px;">Cookie</a> <a href="/tags/Hash/" style="font-size: 10px;">Hash</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/JMeter/" style="font-size: 10px;">JMeter</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mybatis/" style="font-size: 10px;">Mybatis</a> <a href="/tags/Mybatis-plus/" style="font-size: 10px;">Mybatis-plus</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/RabbitMq/" style="font-size: 10px;">RabbitMq</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SMTP/" style="font-size: 10px;">SMTP</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/lombok/" style="font-size: 10px;">lombok</a> <a href="/tags/%E4%BA%8B%E5%8A%A1/" style="font-size: 10px;">事务</a> <a href="/tags/%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8/" style="font-size: 10px;">参数解析器</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 10px;">多线程</a> <a href="/tags/%E6%B3%A8%E8%A7%A3/" style="font-size: 10px;">注解</a> <a href="/tags/%E6%BA%90%E7%A0%81/" style="font-size: 10px;">源码</a> <a href="/tags/%E7%BD%91%E9%A1%B5%E7%9B%91%E5%90%AC/" style="font-size: 10px;">网页监听</a> <a href="/tags/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">逆向工程</a>
                     </div>
                 </section>
                 
@@ -277,6 +277,102 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-HashMap在多线程下的死循环问题" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2021/05/07/HashMap%E5%9C%A8%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8B%E7%9A%84%E6%AD%BB%E5%BE%AA%E7%8E%AF%E9%97%AE%E9%A2%98/" class="article-date">
+      <time datetime="2021-05-07T03:13:01.000Z" itemprop="datePublished">2021-05-07</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2021/05/07/HashMap%E5%9C%A8%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8B%E7%9A%84%E6%AD%BB%E5%BE%AA%E7%8E%AF%E9%97%AE%E9%A2%98/">HashMap在多线程下的死循环问题</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>Java中的HashMap是非线程安全的，其采用链表解决哈希碰撞问题，虽然单个线程操作时不可能出现环形链表，但多线程下当HashMap需要扩容时，HashMap就会进行rehash操作，其结构就会发生翻天覆地的变化，这时就有可能产生环形链表了。</p>
+<h1 id="1、存储数据-put"><a href="#1、存储数据-put" class="headerlink" title="1、存储数据 put()"></a>1、存储数据 put()</h1><p>当我们往HashMap中put元素的时候，先根据key的hash值得到这个元素在数组中的位置（即下标），然后就可以把这个元素放到对应的位置中了。 如果这个元素所在的位置上已经存放有其他元素了，那么在同一个位子上的元素将以链表的形式存放，新加入的元素放在链头，而先前加入的放在链尾。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> V <span class="title">put</span><span class="params">(K key, V value)</span></span>&#123;</span><br><span class="line">    ......</span><br><span class="line">        <span class="comment">//算Hash值</span></span><br><span class="line">        <span class="keyword">int</span> hash = hash(key.hashCode());</span><br><span class="line">    <span class="keyword">int</span> i = indexFor(hash, table.length);</span><br><span class="line">    <span class="comment">//如果该key已被插入，则替换掉旧的value （链接操作）</span></span><br><span class="line">    <span class="keyword">for</span> (Entry&lt;K,V&gt; e = table[i]; e != <span class="keyword">null</span>; e = e.next) &#123;</span><br><span class="line">        Object k;</span><br><span class="line">        <span class="keyword">if</span> (e.hash == hash &amp;&amp; ((k = e.key) == key || key.equals(k))) &#123;</span><br><span class="line">            V oldValue = e.value;</span><br><span class="line">            e.value = value;</span><br><span class="line">            e.recordAccess(<span class="keyword">this</span>);</span><br><span class="line">            <span class="keyword">return</span> oldValue;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    modCount++;</span><br><span class="line">    <span class="comment">//该key不存在，需要增加一个结点</span></span><br><span class="line">    addEntry(hash, key, value, i);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="2、检查容量是否超标-addEntry"><a href="#2、检查容量是否超标-addEntry" class="headerlink" title="2、检查容量是否超标 addEntry()"></a>2、检查容量是否超标 addEntry()</h1><p>如果现在size已经超过了threshold，那么就要进行resize操作,新建一个更大尺寸的hash表，然后把数据从老的Hash表中迁移到新的Hash表中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addEntry</span><span class="params">(<span class="keyword">int</span> hash, K key, V value, <span class="keyword">int</span> bucketIndex)</span></span>&#123;</span><br><span class="line">    Entry&lt;K,V&gt; e = table[bucketIndex];</span><br><span class="line">    table[bucketIndex] = <span class="keyword">new</span> Entry&lt;K,V&gt;(hash, key, value, e);</span><br><span class="line">    <span class="comment">//查看当前的size是否超过了我们设定的阈值threshold，如果超过，需要resize</span></span><br><span class="line">    <span class="keyword">if</span> (size++ &gt;= threshold)</span><br><span class="line">        resize(<span class="number">2</span> * table.length);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="3、调整HashMap的容量-resize"><a href="#3、调整HashMap的容量-resize" class="headerlink" title="3、调整HashMap的容量 resize()"></a>3、调整HashMap的容量 resize()</h1><p>每次扩容将哈希表的容量扩展为原来的2倍。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">resize</span><span class="params">(<span class="keyword">int</span> newCapacity)</span></span>&#123;</span><br><span class="line">    Entry[] oldTable = table;</span><br><span class="line">    <span class="keyword">int</span> oldCapacity = oldTable.length;</span><br><span class="line">    ......</span><br><span class="line">        <span class="comment">//创建一个新的Hash Table</span></span><br><span class="line">        Entry[] newTable = <span class="keyword">new</span> Entry[newCapacity];</span><br><span class="line">    <span class="comment">//将Old Hash Table上的数据迁移到New Hash Table上</span></span><br><span class="line">    transfer(newTable);</span><br><span class="line">    table = newTable;</span><br><span class="line">    threshold = (<span class="keyword">int</span>)(newCapacity * loadFactor);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="4、旧的数据映射到新的哈希表-transfer"><a href="#4、旧的数据映射到新的哈希表-transfer" class="headerlink" title="4、旧的数据映射到新的哈希表 transfer()"></a>4、旧的数据映射到新的哈希表 transfer()</h1><p>映射时采用头部插入的形式，即“ 3 -&gt; 7 ”会被映射为“ 7 -&gt; 3 ”。问题就是出在这里，多个线程向HashMap中添加数据时，多次同时执行transfer()方法就会有一定概率产生环形链表，进而在get时出现死循环。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">transfer</span><span class="params">(Entry[] newTable)</span></span>&#123;</span><br><span class="line">    Entry[] src = table;</span><br><span class="line">    <span class="keyword">int</span> newCapacity = newTable.length;</span><br><span class="line">    <span class="comment">//下面这段代码的意思是：</span></span><br><span class="line">    <span class="comment">//  从OldTable里摘一个元素出来，然后放到NewTable中</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; src.length; j++) &#123;</span><br><span class="line">        Entry&lt;K,V&gt; e = src[j];</span><br><span class="line">        <span class="keyword">if</span> (e != <span class="keyword">null</span>) &#123;</span><br><span class="line">            src[j] = <span class="keyword">null</span>;</span><br><span class="line">            <span class="keyword">do</span> &#123;</span><br><span class="line">                Entry&lt;K,V&gt; next = e.next;<span class="comment">//取出第一个元素</span></span><br><span class="line">                <span class="keyword">int</span> i = indexFor(e.hash, newCapacity);</span><br><span class="line">                e.next = newTable[i];</span><br><span class="line">                newTable[i] = e;</span><br><span class="line">                e = next;</span><br><span class="line">            &#125; <span class="keyword">while</span> (e != <span class="keyword">null</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="5、图解"><a href="#5、图解" class="headerlink" title="5、图解"></a>5、图解</h1><h2 id="5-1、正常单线程"><a href="#5-1、正常单线程" class="headerlink" title="5.1、正常单线程"></a>5.1、正常单线程</h2><p>最上面的是old hash 表，其中的Hash表的size=2, 所以key = 3, 7, 5，在mod 2以后都冲突在table[1]这里了。 接下来的三个步骤是Hash表 resize成4，然后所有的&lt;key,value&gt; 重新rehash的过程。</p>
+<img src="https://www.hualigs.cn/image/6094fa879ee13.jpg"/>
+
+<h2 id="5-2、并发多线程"><a href="#5-2、并发多线程" class="headerlink" title="5.2、并发多线程"></a>5.2、并发多线程</h2><p>假设我们有两个线程。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    Entry&lt;K,V&gt; next = e.next; <span class="comment">// &lt;--假设线程一执行到这里就被调度挂起了，执行其他操作</span></span><br><span class="line">    <span class="keyword">int</span> i = indexFor(e.hash, newCapacity);</span><br><span class="line">    e.next = newTable[i];</span><br><span class="line">    newTable[i] = e;</span><br><span class="line">    e = next;</span><br><span class="line">&#125; <span class="keyword">while</span> (e != <span class="keyword">null</span>);</span><br></pre></td></tr></table></figure>
+
+<p>线程一执行到 “ Entry&lt;K,V&gt; next = e.next; ” 被挂起，而线程二照常执行完毕，于是有了：</p>
+<img src="https://www.hualigs.cn/image/6094fc3b73062.jpg"/>
+
+<p>因为线程一的 e 指向了key(3)，而next指向了key(7)，其在线程二rehash后，指向了线程二重组后的链表。我们可以看到链表的顺序被反转后。在这里线程一变成了操作经过线程二操作后的HashMap。此时线程一被调度回来执行</p>
+<p>先是执行 newTalbe[i] = e; 然后是e = next，导致了e指向了key(7)， </p>
+<p>而下一次循环的next = e.next导致了next指向了key(3)。</p>
+<img src="https://www.hualigs.cn/image/6094fce244a78.jpg"/>
+
+<p>线程一接着工作。把key(7)摘下来，放到newTable[i]的第一个，然后把e和next往下移。这个元素所在的位置上已经存放有其他元素了，那么在同一个位子上的元素将以链表的形式存放，新加入的放在链头，而先前加入的放在链尾。</p>
+<img src="https://www.hualigs.cn/image/6094fd471cd12.jpg"/>
+
+<p>再次执行循环，把key(3)放到newTable[i]的第一个，key(3).next指向key(7)，环形链表就此形成。当我们通过get进入这个环形链表并且找不到数据时，死循环就产生了。</p>
+<img src="https://www.hualigs.cn/image/6094fdcf7cad1.jpg"/>
+
+
+
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hash/" rel="tag">Hash</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag">多线程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%BA%90%E7%A0%81/" rel="tag">源码</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-简单实现一个登录功能" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -312,29 +408,19 @@
 <li>系统业务如何明确当前的登录用户。</li>
 </ul>
 <h1 id="分布式系统同步用户信息"><a href="#分布式系统同步用户信息" class="headerlink" title="分布式系统同步用户信息"></a>分布式系统同步用户信息</h1><p>在分布式系统中，负载均衡器可能将同一用户不同阶段的操作分配到不同的Tomcat上，这就要求这些Tomcat均能够读取到用户的登录信息。我们当然可以通过复制的方式解决这一问题，但这无疑是十分浪费资源的。此外我们还可以使用一台独立的服务器专门存储用户的登录信息，其他Tomcat执行需要登录信息的业务时，与该服务器同步信息即可。这种方式就对这台服务器的读写速度提出了较高的要求，基于内存的Redis是个不错的选择。</p>
-<img src="https://www.hualigs.cn/image/607e42a8aa070.jpg" alin=center/>
-
-<h1 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h1><p>Cookie是由服务端产生的，产生后发送给客户端的一种“键值对”缓存文件。我们可以借此在用户登录的时候生成一个</p>
-<ul>
-<li><p>key = “UserTickets”  </p>
-</li>
-<li><p>value = ticket（通过UUID生成）</p>
-</li>
-</ul>
-<p>的Cookie存放在客户端，同时向Redis写入一条记录：</p>
-<ul>
-<li>key = “user” + ticket</li>
-<li>value = user（数据库中的完整用户信息）</li>
-</ul>
+<blockquote>
+<div align=center><img src="https://www.hualigs.cn/image/607e42a8aa070.jpg" /></div>
+</blockquote>
+<h1 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h1><p>Cookie是由服务端产生的，产生后发送给客户端的一种“键值对”缓存文件。我们可以借此在用户登录的时候生成一个：key = “UserTickets”  ，value = ticket（通过UUID生成）的Cookie存放在客户端，同时向Redis写入一条记录：key = “user” + ticket；value = user（数据库中的完整用户信息）</p>
 <p>在后续操作中，无论哪个Tomcat执行业务，均通过Cookie去获取当前访问的ticket，再依据该ticket查询Redis判断用户是否登录，操作对应于哪个用户。</p>
 <p><em>CookieUtil以及UUidUtil代码详见：<a target="_blank" rel="noopener" href="https://github.com/ytflyhw/CookieUtil">https://github.com/ytflyhw/CookieUtil</a></em></p>
 <h1 id="参数解析器"><a href="#参数解析器" class="headerlink" title="参数解析器"></a>参数解析器</h1><p>每类需要User信息的业务都要编写一段获取Cookie，访问Redis的代码，这未免过于繁琐，SpringMVC提供的参数解析器（HandlerMethodArgumentResolver）可以很好的简化这一过程。</p>
 <p>HandlerMethodArgumentResolver主要包含两个接口方法：</p>
-<h3 id="supportsParameter"><a href="#supportsParameter" class="headerlink" title="supportsParameter"></a>supportsParameter</h3><p>返回boolean类型，作用是判断Controller层中的参数是否符合条件，符合条件则执行resolveArgument方法，不符合则跳过。</p>
+<h2 id="supportsParameter"><a href="#supportsParameter" class="headerlink" title="supportsParameter"></a>supportsParameter</h2><p>返回boolean类型，作用是判断Controller层中的参数是否符合条件，符合条件则执行resolveArgument方法，不符合则跳过。</p>
 <p>我们可以通过执行getParameterAnnotations()判断是否包含特定注解类型，然后使用这种注解标注需要执行resolveArgument方法的参数。或者干脆使用getParameterType()判断是否为特定变量类型。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">supportsParameter</span><span class="params">(MethodParameter methodParameter)</span> </span>&#123;</span><br><span class="line">    Class&lt;?&gt; clazz = methodParameter.getParameterType();</span><br><span class="line">    <span class="keyword">return</span> clazz == User.class;</span><br></pre></td></tr></table></figure>
 
-<h3 id="resolveArgument"><a href="#resolveArgument" class="headerlink" title="resolveArgument"></a>resolveArgument</h3><p>实际的业务处理逻辑，只有在supportsParameter返回true时才执行，返回值将赋值给Controller层中的这个参数。</p>
+<h2 id="resolveArgument"><a href="#resolveArgument" class="headerlink" title="resolveArgument"></a>resolveArgument</h2><p>实际的业务处理逻辑，只有在supportsParameter返回true时才执行，返回值将赋值给Controller层中的这个参数。</p>
 <p>我们可以在这个方法中编写通过Cookie获取ticket的代码逻辑。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">resolveArgument</span><span class="params">(MethodParameter methodParameter, ModelAndViewContainer modelAndViewContainer, NativeWebRequest nativeWebRequest, WebDataBinderFactory webDataBinderFactory)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    HttpServletRequest request = nativeWebRequest.getNativeRequest(HttpServletRequest.class);</span><br><span class="line">    HttpServletResponse response = nativeWebRequest.getNativeResponse(HttpServletResponse.class);</span><br><span class="line">    String ticket = CookieUtil.getCookieValue(request, <span class="string">&quot;userTicket&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span>(StringUtils.isEmpty(ticket))&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> userService.getUserByCookie(ticket, request, response);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -1332,97 +1418,6 @@
         <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SMTP/" rel="tag">SMTP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E9%A1%B5%E7%9B%91%E5%90%AC/" rel="tag">网页监听</a></li></ul>
     </div>
 
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-hexo博客搭建" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2020/09/07/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" class="article-date">
-      <time datetime="2020-09-07T04:27:25.000Z" itemprop="datePublished">2020-09-07</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2020/09/07/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">hexo博客搭建</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>系统环境：Ununtu 20.04</p>
-<h2 id="一、安装nodejs"><a href="#一、安装nodejs" class="headerlink" title="一、安装nodejs"></a>一、安装nodejs</h2><p>终端输入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nodejs</span><br><span class="line">sudo apt-get install npm</span><br></pre></td></tr></table></figure>
-<p>这样安装的nodejs很有可能不是最新版本，接下来需要利用npm安装n管理器对版本进行更新</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install n -g</span><br><span class="line">sudo n stable</span><br></pre></td></tr></table></figure>
-<p>最后可以通过 </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo node -v</span><br><span class="line">sudo npm -v </span><br></pre></td></tr></table></figure>
-<p>来验证安装成功或查看版本<br>ps:可以通过 n 管理器指定安装版本,如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo n v0.10.26</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="二、安装hexo框架"><a href="#二、安装hexo框架" class="headerlink" title="二、安装hexo框架"></a>二、安装hexo框架</h2><p>终端输入</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<p>即可完成安装<br>输入</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo hexo -v</span><br></pre></td></tr></table></figure>
-<p>可以验证或查看版本。</p>
-<hr>
-<h2 id="三、初始化以及新建博文"><a href="#三、初始化以及新建博文" class="headerlink" title="三、初始化以及新建博文"></a>三、初始化以及新建博文</h2><p>新建文件夹blog(所有博客内容均在此文件夹下)<br>进入blog,启动终端</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo hexo init</span><br></pre></td></tr></table></figure>
-<p>完成博客初始化，若clone出错，有可能是因为没有git，安装git即可<br>终端输入</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo hexo n <span class="string">&quot;博文名称&quot;</span></span><br></pre></td></tr></table></figure>
-<p>hexo会自动在 ~/blog/source/_posts 下新建一篇博文，可以通过vim等工具对其进行编辑</p>
-<hr>
-<h2 id="四、预览"><a href="#四、预览" class="headerlink" title="四、预览"></a>四、预览</h2><p>blog文件夹下启动</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo hexo clean</span><br><span class="line">sudo hexo g</span><br><span class="line">sudo hexo s</span><br></pre></td></tr></table></figure>
-<p>即可在本地4000端口预览博客，浏览器输入：localhost:4000。</p>
-<hr>
-<h2 id="五、部署至github"><a href="#五、部署至github" class="headerlink" title="五、部署至github"></a>五、部署至github</h2><p>注册github账号后，新建一个repository。<br><img src="https://i.loli.net/2020/09/05/YLepyEQbndTKOl3.png"><br>注意：repository name 必须与用户昵称保持一致。<br>blog文件夹下启动终端，安装插件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
-<p>打开~/blog/_config.yml,对文件最底部的 #Deployment 进行修改。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/one-command-deployment</span></span><br><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repo: https://github.com/ytflyhw/ytflyhw.github.io.git (仓库地址)</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-
-<p>最后在blog文件夹下终端输入_</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-<p>第一次部署可能需要验证github账户的昵称以及邮箱，按照提示输入指令即可，之后每次部署需要输入账号以及密码。<br>成功后，浏览器输入<a target="_blank" rel="noopener" href="https://ytflyhw.github.io/">https://ytflyhw.github.io</a> （仓库名）即可访问博客。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
       
       <div class="clearfix"></div>
     </div>

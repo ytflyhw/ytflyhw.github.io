@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://www.hualigs.cn/image/607e42a8aa070.jpg">
 <meta property="article:published_time" content="2021-04-20T02:16:55.000Z">
-<meta property="article:modified_time" content="2021-04-20T05:59:14.731Z">
+<meta property="article:modified_time" content="2021-04-20T06:06:51.429Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Spring">
@@ -206,7 +206,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Cookie/" style="font-size: 10px;">Cookie</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/JMeter/" style="font-size: 10px;">JMeter</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mybatis/" style="font-size: 10px;">Mybatis</a> <a href="/tags/Mybatis-plus/" style="font-size: 10px;">Mybatis-plus</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/RabbitMq/" style="font-size: 10px;">RabbitMq</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SMTP/" style="font-size: 10px;">SMTP</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/lombok/" style="font-size: 10px;">lombok</a> <a href="/tags/%E4%BA%8B%E5%8A%A1/" style="font-size: 10px;">事务</a> <a href="/tags/%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8/" style="font-size: 10px;">参数解析器</a> <a href="/tags/%E6%B3%A8%E8%A7%A3/" style="font-size: 10px;">注解</a> <a href="/tags/%E7%BD%91%E9%A1%B5%E7%9B%91%E5%90%AC/" style="font-size: 10px;">网页监听</a> <a href="/tags/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">逆向工程</a>
+                        <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Cookie/" style="font-size: 10px;">Cookie</a> <a href="/tags/Hash/" style="font-size: 10px;">Hash</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/JMeter/" style="font-size: 10px;">JMeter</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mybatis/" style="font-size: 10px;">Mybatis</a> <a href="/tags/Mybatis-plus/" style="font-size: 10px;">Mybatis-plus</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/RabbitMq/" style="font-size: 10px;">RabbitMq</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SMTP/" style="font-size: 10px;">SMTP</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/lombok/" style="font-size: 10px;">lombok</a> <a href="/tags/%E4%BA%8B%E5%8A%A1/" style="font-size: 10px;">事务</a> <a href="/tags/%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8/" style="font-size: 10px;">参数解析器</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 10px;">多线程</a> <a href="/tags/%E6%B3%A8%E8%A7%A3/" style="font-size: 10px;">注解</a> <a href="/tags/%E6%BA%90%E7%A0%81/" style="font-size: 10px;">源码</a> <a href="/tags/%E7%BD%91%E9%A1%B5%E7%9B%91%E5%90%AC/" style="font-size: 10px;">网页监听</a> <a href="/tags/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">逆向工程</a>
                     </div>
                 </section>
                 
@@ -329,29 +329,19 @@
 <li>系统业务如何明确当前的登录用户。</li>
 </ul>
 <h1 id="分布式系统同步用户信息"><a href="#分布式系统同步用户信息" class="headerlink" title="分布式系统同步用户信息"></a>分布式系统同步用户信息</h1><p>在分布式系统中，负载均衡器可能将同一用户不同阶段的操作分配到不同的Tomcat上，这就要求这些Tomcat均能够读取到用户的登录信息。我们当然可以通过复制的方式解决这一问题，但这无疑是十分浪费资源的。此外我们还可以使用一台独立的服务器专门存储用户的登录信息，其他Tomcat执行需要登录信息的业务时，与该服务器同步信息即可。这种方式就对这台服务器的读写速度提出了较高的要求，基于内存的Redis是个不错的选择。</p>
-<img src="https://www.hualigs.cn/image/607e42a8aa070.jpg" alin=center/>
-
-<h1 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h1><p>Cookie是由服务端产生的，产生后发送给客户端的一种“键值对”缓存文件。我们可以借此在用户登录的时候生成一个</p>
-<ul>
-<li><p>key = “UserTickets”  </p>
-</li>
-<li><p>value = ticket（通过UUID生成）</p>
-</li>
-</ul>
-<p>的Cookie存放在客户端，同时向Redis写入一条记录：</p>
-<ul>
-<li>key = “user” + ticket</li>
-<li>value = user（数据库中的完整用户信息）</li>
-</ul>
+<blockquote>
+<div align=center><img src="https://www.hualigs.cn/image/607e42a8aa070.jpg" /></div>
+</blockquote>
+<h1 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h1><p>Cookie是由服务端产生的，产生后发送给客户端的一种“键值对”缓存文件。我们可以借此在用户登录的时候生成一个：key = “UserTickets”  ，value = ticket（通过UUID生成）的Cookie存放在客户端，同时向Redis写入一条记录：key = “user” + ticket；value = user（数据库中的完整用户信息）</p>
 <p>在后续操作中，无论哪个Tomcat执行业务，均通过Cookie去获取当前访问的ticket，再依据该ticket查询Redis判断用户是否登录，操作对应于哪个用户。</p>
 <p><em>CookieUtil以及UUidUtil代码详见：<a target="_blank" rel="noopener" href="https://github.com/ytflyhw/CookieUtil">https://github.com/ytflyhw/CookieUtil</a></em></p>
 <h1 id="参数解析器"><a href="#参数解析器" class="headerlink" title="参数解析器"></a>参数解析器</h1><p>每类需要User信息的业务都要编写一段获取Cookie，访问Redis的代码，这未免过于繁琐，SpringMVC提供的参数解析器（HandlerMethodArgumentResolver）可以很好的简化这一过程。</p>
 <p>HandlerMethodArgumentResolver主要包含两个接口方法：</p>
-<h3 id="supportsParameter"><a href="#supportsParameter" class="headerlink" title="supportsParameter"></a>supportsParameter</h3><p>返回boolean类型，作用是判断Controller层中的参数是否符合条件，符合条件则执行resolveArgument方法，不符合则跳过。</p>
+<h2 id="supportsParameter"><a href="#supportsParameter" class="headerlink" title="supportsParameter"></a>supportsParameter</h2><p>返回boolean类型，作用是判断Controller层中的参数是否符合条件，符合条件则执行resolveArgument方法，不符合则跳过。</p>
 <p>我们可以通过执行getParameterAnnotations()判断是否包含特定注解类型，然后使用这种注解标注需要执行resolveArgument方法的参数。或者干脆使用getParameterType()判断是否为特定变量类型。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">supportsParameter</span><span class="params">(MethodParameter methodParameter)</span> </span>&#123;</span><br><span class="line">    Class&lt;?&gt; clazz = methodParameter.getParameterType();</span><br><span class="line">    <span class="keyword">return</span> clazz == User.class;</span><br></pre></td></tr></table></figure>
 
-<h3 id="resolveArgument"><a href="#resolveArgument" class="headerlink" title="resolveArgument"></a>resolveArgument</h3><p>实际的业务处理逻辑，只有在supportsParameter返回true时才执行，返回值将赋值给Controller层中的这个参数。</p>
+<h2 id="resolveArgument"><a href="#resolveArgument" class="headerlink" title="resolveArgument"></a>resolveArgument</h2><p>实际的业务处理逻辑，只有在supportsParameter返回true时才执行，返回值将赋值给Controller层中的这个参数。</p>
 <p>我们可以在这个方法中编写通过Cookie获取ticket的代码逻辑。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">resolveArgument</span><span class="params">(MethodParameter methodParameter, ModelAndViewContainer modelAndViewContainer, NativeWebRequest nativeWebRequest, WebDataBinderFactory webDataBinderFactory)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    HttpServletRequest request = nativeWebRequest.getNativeRequest(HttpServletRequest.class);</span><br><span class="line">    HttpServletResponse response = nativeWebRequest.getNativeResponse(HttpServletResponse.class);</span><br><span class="line">    String ticket = CookieUtil.getCookieValue(request, <span class="string">&quot;userTicket&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span>(StringUtils.isEmpty(ticket))&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> userService.getUserByCookie(ticket, request, response);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -369,7 +359,7 @@
         <p><span>本文标题:</span><a  href="/2021/04/20/%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD/">简单实现一个登录功能</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问  的个人博客"></a></p>
         <p><span>发布时间:</span>2021年04月20日 - 10时16分</p>
-        <p><span>最后更新:</span>2021年04月20日 - 13时59分</p>
+        <p><span>最后更新:</span>2021年04月20日 - 14时06分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2021/04/20/%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD/" title="简单实现一个登录功能">http://example.com/2021/04/20/%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD/</a>
             <span class="copy-path" data-clipboard-text="原文: http://example.com/2021/04/20/%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD/　　作者: " title=""></span>
@@ -382,6 +372,15 @@
 
 
 <nav id="article-nav">
+  
+    <a  href="/2021/05/07/HashMap%E5%9C%A8%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8B%E7%9A%84%E6%AD%BB%E5%BE%AA%E7%8E%AF%E9%97%AE%E9%A2%98/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          HashMap在多线程下的死循环问题
+        
+      </div>
+    </a>
   
   
     <a  href="/2021/04/10/Linux%E4%B8%AD%E7%9A%84fork()%E5%87%BD%E6%95%B0/" id="article-nav-older" class="article-nav-link-wrap">
@@ -397,7 +396,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%90%8C%E6%AD%A5%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="toc-number">1.</span> <span class="toc-text">分布式系统同步用户信息</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Cookie"><span class="toc-number">2.</span> <span class="toc-text">Cookie</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8"><span class="toc-number">3.</span> <span class="toc-text">参数解析器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#supportsParameter"><span class="toc-number">3.0.1.</span> <span class="toc-text">supportsParameter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#resolveArgument"><span class="toc-number">3.0.2.</span> <span class="toc-text">resolveArgument</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%90%8C%E6%AD%A5%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="toc-number">1.</span> <span class="toc-text">分布式系统同步用户信息</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Cookie"><span class="toc-number">2.</span> <span class="toc-text">Cookie</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8"><span class="toc-number">3.</span> <span class="toc-text">参数解析器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#supportsParameter"><span class="toc-number">3.1.</span> <span class="toc-text">supportsParameter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#resolveArgument"><span class="toc-number">3.2.</span> <span class="toc-text">resolveArgument</span></a></li></ol></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -470,7 +469,9 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a  href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a  href="/2021/05/07/HashMap%E5%9C%A8%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8B%E7%9A%84%E6%AD%BB%E5%BE%AA%E7%8E%AF%E9%97%AE%E9%A2%98/" title="上一篇: HashMap在多线程下的死循环问题">
+                <i class="fa fa-angle-left"></i>
+            </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
@@ -479,7 +480,7 @@
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2021/04/20/%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD/">简单实现一个登录功能</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/04/10/Linux%E4%B8%AD%E7%9A%84fork()%E5%87%BD%E6%95%B0/">Linux中的fork()函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/04/02/Mybatis-plus%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/">Mybatis-plus逆向工程</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/29/Spring%E6%95%B4%E5%90%88Mybatis/">Spring整合Mybatis</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/28/Spring-%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9A%84%E6%98%A5%E5%A4%A9/">Spring-软件开发的春天</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/27/lombok%E6%B3%A8%E8%A7%A3%E4%BD%BF%E7%94%A8/">lombok注解使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/26/JMeter%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95/">JMeter压力测试</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/25/RabbitMq-%E7%AC%94%E8%AE%B0/">RabbitMq 笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/09/21/%E7%9B%91%E8%A7%86%E8%80%85%E8%AE%A1%E5%88%92/">监听者计划</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/09/07/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">hexo博客搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/09/02/hello-world/">Hello World</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2021/05/07/HashMap%E5%9C%A8%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8B%E7%9A%84%E6%AD%BB%E5%BE%AA%E7%8E%AF%E9%97%AE%E9%A2%98/">HashMap在多线程下的死循环问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/04/20/%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD/">简单实现一个登录功能</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/04/10/Linux%E4%B8%AD%E7%9A%84fork()%E5%87%BD%E6%95%B0/">Linux中的fork()函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/04/02/Mybatis-plus%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/">Mybatis-plus逆向工程</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/29/Spring%E6%95%B4%E5%90%88Mybatis/">Spring整合Mybatis</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/28/Spring-%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9A%84%E6%98%A5%E5%A4%A9/">Spring-软件开发的春天</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/27/lombok%E6%B3%A8%E8%A7%A3%E4%BD%BF%E7%94%A8/">lombok注解使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/26/JMeter%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95/">JMeter压力测试</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/25/RabbitMq-%E7%AC%94%E8%AE%B0/">RabbitMq 笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/09/21/%E7%9B%91%E8%A7%86%E8%80%85%E8%AE%A1%E5%88%92/">监听者计划</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/09/07/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">hexo博客搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/09/02/hello-world/">Hello World</a></li></ul>
     
 <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
 

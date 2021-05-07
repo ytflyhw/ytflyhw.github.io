@@ -7,20 +7,29 @@
   
   
   
-  <title>Linux中的fork()函数 | Hexo</title>
+  <title>HashMap在多线程下的死循环问题 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个进程，包括代码、数据和分配给进程的资源。fork（）函数通过系统调用创建一个与原来进程几乎完全相同的进程，也就是两个进程可以做完全相同的事。一个进程调用fork（）函数后，系统先给新的进程分配资源，例如存储数据和代码的空间。然后把原来的进程的所有值都复制到新的新进程中，只有少数值与原来的进程的值不同，相当于克隆了一个自己。 12345678910111213141516171819202122">
+  <meta name="description" content="Java中的HashMap是非线程安全的，其采用链表解决哈希碰撞问题，虽然单个线程操作时不可能出现环形链表，但多线程下当HashMap需要扩容时，HashMap就会进行rehash操作，其结构就会发生翻天覆地的变化，这时就有可能产生环形链表了。 1、存储数据 put()当我们往HashMap中put元素的时候，先根据key的hash值得到这个元素在数组中的位置（即下标），然后就可以把这个元素放到对">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux中的fork()函数">
-<meta property="og:url" content="http://example.com/2021/04/10/Linux%E4%B8%AD%E7%9A%84fork()%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:title" content="HashMap在多线程下的死循环问题">
+<meta property="og:url" content="http://example.com/2021/05/07/HashMap%E5%9C%A8%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8B%E7%9A%84%E6%AD%BB%E5%BE%AA%E7%8E%AF%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="一个进程，包括代码、数据和分配给进程的资源。fork（）函数通过系统调用创建一个与原来进程几乎完全相同的进程，也就是两个进程可以做完全相同的事。一个进程调用fork（）函数后，系统先给新的进程分配资源，例如存储数据和代码的空间。然后把原来的进程的所有值都复制到新的新进程中，只有少数值与原来的进程的值不同，相当于克隆了一个自己。 12345678910111213141516171819202122">
+<meta property="og:description" content="Java中的HashMap是非线程安全的，其采用链表解决哈希碰撞问题，虽然单个线程操作时不可能出现环形链表，但多线程下当HashMap需要扩容时，HashMap就会进行rehash操作，其结构就会发生翻天覆地的变化，这时就有可能产生环形链表了。 1、存储数据 put()当我们往HashMap中put元素的时候，先根据key的hash值得到这个元素在数组中的位置（即下标），然后就可以把这个元素放到对">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-04-10T07:07:04.000Z">
-<meta property="article:modified_time" content="2021-04-10T03:28:29.606Z">
+<meta property="og:image" content="https://www.hualigs.cn/image/6094fa879ee13.jpg">
+<meta property="og:image" content="https://www.hualigs.cn/image/6094fc3b73062.jpg">
+<meta property="og:image" content="https://www.hualigs.cn/image/6094fce244a78.jpg">
+<meta property="og:image" content="https://www.hualigs.cn/image/6094fd471cd12.jpg">
+<meta property="og:image" content="https://www.hualigs.cn/image/6094fdcf7cad1.jpg">
+<meta property="article:published_time" content="2021-05-07T03:13:01.000Z">
+<meta property="article:modified_time" content="2021-05-07T08:45:23.327Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="源码">
+<meta property="article:tag" content="多线程">
+<meta property="article:tag" content="Hash">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.hualigs.cn/image/6094fa879ee13.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -277,11 +286,11 @@
         </header>
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-Linux中的fork()函数" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-HashMap在多线程下的死循环问题" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2021/04/10/Linux%E4%B8%AD%E7%9A%84fork()%E5%87%BD%E6%95%B0/" class="article-date">
-      <time datetime="2021-04-10T07:07:04.000Z" itemprop="datePublished">2021-04-10</time>
+      <a  href="/2021/05/07/HashMap%E5%9C%A8%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8B%E7%9A%84%E6%AD%BB%E5%BE%AA%E7%8E%AF%E9%97%AE%E9%A2%98/" class="article-date">
+      <time datetime="2021-05-07T03:13:01.000Z" itemprop="datePublished">2021-05-07</time>
 </a>
 
     </div>
@@ -295,7 +304,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Linux中的fork()函数
+      HashMap在多线程下的死循环问题
     </h1>
   
 
@@ -307,7 +316,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hash/" rel="tag">Hash</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag">多线程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%BA%90%E7%A0%81/" rel="tag">源码</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -317,19 +326,41 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>一个进程，包括代码、数据和分配给进程的资源。fork（）函数通过系统调用创建一个与原来进程几乎完全相同的进程，也就是两个进程可以做完全相同的事。一个进程调用fork（）函数后，系统先给新的进程分配资源，例如存储数据和代码的空间。然后把原来的进程的所有值都复制到新的新进程中，只有少数值与原来的进程的值不同，相当于克隆了一个自己。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">pid_t</span> fpid; <span class="comment">//fpid表示fork函数返回的值</span></span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    fpid = fork();</span><br><span class="line">    <span class="keyword">if</span> (fpid &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;error in fork!&quot;</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (fpid == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;i am the child process, my process id is %d/n&quot;</span>, getpid());</span><br><span class="line">        count++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;i am the parent process, my process id is %d/n&quot;</span>, getpid());</span><br><span class="line">        count++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;统计结果是: %d/n&quot;</span>, count);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>Java中的HashMap是非线程安全的，其采用链表解决哈希碰撞问题，虽然单个线程操作时不可能出现环形链表，但多线程下当HashMap需要扩容时，HashMap就会进行rehash操作，其结构就会发生翻天覆地的变化，这时就有可能产生环形链表了。</p>
+<h1 id="1、存储数据-put"><a href="#1、存储数据-put" class="headerlink" title="1、存储数据 put()"></a>1、存储数据 put()</h1><p>当我们往HashMap中put元素的时候，先根据key的hash值得到这个元素在数组中的位置（即下标），然后就可以把这个元素放到对应的位置中了。 如果这个元素所在的位置上已经存放有其他元素了，那么在同一个位子上的元素将以链表的形式存放，新加入的元素放在链头，而先前加入的放在链尾。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> V <span class="title">put</span><span class="params">(K key, V value)</span></span>&#123;</span><br><span class="line">    ......</span><br><span class="line">        <span class="comment">//算Hash值</span></span><br><span class="line">        <span class="keyword">int</span> hash = hash(key.hashCode());</span><br><span class="line">    <span class="keyword">int</span> i = indexFor(hash, table.length);</span><br><span class="line">    <span class="comment">//如果该key已被插入，则替换掉旧的value （链接操作）</span></span><br><span class="line">    <span class="keyword">for</span> (Entry&lt;K,V&gt; e = table[i]; e != <span class="keyword">null</span>; e = e.next) &#123;</span><br><span class="line">        Object k;</span><br><span class="line">        <span class="keyword">if</span> (e.hash == hash &amp;&amp; ((k = e.key) == key || key.equals(k))) &#123;</span><br><span class="line">            V oldValue = e.value;</span><br><span class="line">            e.value = value;</span><br><span class="line">            e.recordAccess(<span class="keyword">this</span>);</span><br><span class="line">            <span class="keyword">return</span> oldValue;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    modCount++;</span><br><span class="line">    <span class="comment">//该key不存在，需要增加一个结点</span></span><br><span class="line">    addEntry(hash, key, value, i);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>运行结果为</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">i am the child <span class="built_in">process</span>, my <span class="built_in">process</span> id is <span class="number">5574</span></span><br><span class="line">统计结果是: <span class="number">1</span></span><br><span class="line">i am the parent <span class="built_in">process</span>, my <span class="built_in">process</span> id is <span class="number">5573</span></span><br><span class="line">统计结果是: <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h1 id="2、检查容量是否超标-addEntry"><a href="#2、检查容量是否超标-addEntry" class="headerlink" title="2、检查容量是否超标 addEntry()"></a>2、检查容量是否超标 addEntry()</h1><p>如果现在size已经超过了threshold，那么就要进行resize操作,新建一个更大尺寸的hash表，然后把数据从老的Hash表中迁移到新的Hash表中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addEntry</span><span class="params">(<span class="keyword">int</span> hash, K key, V value, <span class="keyword">int</span> bucketIndex)</span></span>&#123;</span><br><span class="line">    Entry&lt;K,V&gt; e = table[bucketIndex];</span><br><span class="line">    table[bucketIndex] = <span class="keyword">new</span> Entry&lt;K,V&gt;(hash, key, value, e);</span><br><span class="line">    <span class="comment">//查看当前的size是否超过了我们设定的阈值threshold，如果超过，需要resize</span></span><br><span class="line">    <span class="keyword">if</span> (size++ &gt;= threshold)</span><br><span class="line">        resize(<span class="number">2</span> * table.length);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>从上面的例子中可以看出，这种克隆不是绝对。这是由于fork虽然只调用一次，却可以返回两次，它可能有三种不同的返回值：</p>
-<ul>
-<li>在父进程中，fork返回新创建子进程的进程ID；</li>
-<li>在子进程中，fork返回0；</li>
-<li>如果出现错误，fork返回一个负值（当前进程数达到系统规定的上限，或系统内存不足）。</li>
-</ul>
-<p>当线程完成所有工作后就会“死亡”，如果父线程“死亡”，子线程的父线程就会被置为1，线程1永远不会“死亡”。</p>
+<h1 id="3、调整HashMap的容量-resize"><a href="#3、调整HashMap的容量-resize" class="headerlink" title="3、调整HashMap的容量 resize()"></a>3、调整HashMap的容量 resize()</h1><p>每次扩容将哈希表的容量扩展为原来的2倍。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">resize</span><span class="params">(<span class="keyword">int</span> newCapacity)</span></span>&#123;</span><br><span class="line">    Entry[] oldTable = table;</span><br><span class="line">    <span class="keyword">int</span> oldCapacity = oldTable.length;</span><br><span class="line">    ......</span><br><span class="line">        <span class="comment">//创建一个新的Hash Table</span></span><br><span class="line">        Entry[] newTable = <span class="keyword">new</span> Entry[newCapacity];</span><br><span class="line">    <span class="comment">//将Old Hash Table上的数据迁移到New Hash Table上</span></span><br><span class="line">    transfer(newTable);</span><br><span class="line">    table = newTable;</span><br><span class="line">    threshold = (<span class="keyword">int</span>)(newCapacity * loadFactor);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="4、旧的数据映射到新的哈希表-transfer"><a href="#4、旧的数据映射到新的哈希表-transfer" class="headerlink" title="4、旧的数据映射到新的哈希表 transfer()"></a>4、旧的数据映射到新的哈希表 transfer()</h1><p>映射时采用头部插入的形式，即“ 3 -&gt; 7 ”会被映射为“ 7 -&gt; 3 ”。问题就是出在这里，多个线程向HashMap中添加数据时，多次同时执行transfer()方法就会有一定概率产生环形链表，进而在get时出现死循环。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">transfer</span><span class="params">(Entry[] newTable)</span></span>&#123;</span><br><span class="line">    Entry[] src = table;</span><br><span class="line">    <span class="keyword">int</span> newCapacity = newTable.length;</span><br><span class="line">    <span class="comment">//下面这段代码的意思是：</span></span><br><span class="line">    <span class="comment">//  从OldTable里摘一个元素出来，然后放到NewTable中</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; src.length; j++) &#123;</span><br><span class="line">        Entry&lt;K,V&gt; e = src[j];</span><br><span class="line">        <span class="keyword">if</span> (e != <span class="keyword">null</span>) &#123;</span><br><span class="line">            src[j] = <span class="keyword">null</span>;</span><br><span class="line">            <span class="keyword">do</span> &#123;</span><br><span class="line">                Entry&lt;K,V&gt; next = e.next;<span class="comment">//取出第一个元素</span></span><br><span class="line">                <span class="keyword">int</span> i = indexFor(e.hash, newCapacity);</span><br><span class="line">                e.next = newTable[i];</span><br><span class="line">                newTable[i] = e;</span><br><span class="line">                e = next;</span><br><span class="line">            &#125; <span class="keyword">while</span> (e != <span class="keyword">null</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="5、图解"><a href="#5、图解" class="headerlink" title="5、图解"></a>5、图解</h1><h2 id="5-1、正常单线程"><a href="#5-1、正常单线程" class="headerlink" title="5.1、正常单线程"></a>5.1、正常单线程</h2><p>最上面的是old hash 表，其中的Hash表的size=2, 所以key = 3, 7, 5，在mod 2以后都冲突在table[1]这里了。 接下来的三个步骤是Hash表 resize成4，然后所有的&lt;key,value&gt; 重新rehash的过程。</p>
+<img src="https://www.hualigs.cn/image/6094fa879ee13.jpg"/>
+
+<h2 id="5-2、并发多线程"><a href="#5-2、并发多线程" class="headerlink" title="5.2、并发多线程"></a>5.2、并发多线程</h2><p>假设我们有两个线程。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    Entry&lt;K,V&gt; next = e.next; <span class="comment">// &lt;--假设线程一执行到这里就被调度挂起了，执行其他操作</span></span><br><span class="line">    <span class="keyword">int</span> i = indexFor(e.hash, newCapacity);</span><br><span class="line">    e.next = newTable[i];</span><br><span class="line">    newTable[i] = e;</span><br><span class="line">    e = next;</span><br><span class="line">&#125; <span class="keyword">while</span> (e != <span class="keyword">null</span>);</span><br></pre></td></tr></table></figure>
+
+<p>线程一执行到 “ Entry&lt;K,V&gt; next = e.next; ” 被挂起，而线程二照常执行完毕，于是有了：</p>
+<img src="https://www.hualigs.cn/image/6094fc3b73062.jpg"/>
+
+<p>因为线程一的 e 指向了key(3)，而next指向了key(7)，其在线程二rehash后，指向了线程二重组后的链表。我们可以看到链表的顺序被反转后。在这里线程一变成了操作经过线程二操作后的HashMap。此时线程一被调度回来执行</p>
+<p>先是执行 newTalbe[i] = e; 然后是e = next，导致了e指向了key(7)， </p>
+<p>而下一次循环的next = e.next导致了next指向了key(3)。</p>
+<img src="https://www.hualigs.cn/image/6094fce244a78.jpg"/>
+
+<p>线程一接着工作。把key(7)摘下来，放到newTable[i]的第一个，然后把e和next往下移。这个元素所在的位置上已经存放有其他元素了，那么在同一个位子上的元素将以链表的形式存放，新加入的放在链头，而先前加入的放在链尾。</p>
+<img src="https://www.hualigs.cn/image/6094fd471cd12.jpg"/>
+
+<p>再次执行循环，把key(3)放到newTable[i]的第一个，key(3).next指向key(7)，环形链表就此形成。当我们通过get进入这个环形链表并且找不到数据时，死循环就产生了。</p>
+<img src="https://www.hualigs.cn/image/6094fdcf7cad1.jpg"/>
+
+
+
 
       
     </div>
@@ -338,13 +369,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a  href="/2021/04/10/Linux%E4%B8%AD%E7%9A%84fork()%E5%87%BD%E6%95%B0/">Linux中的fork()函数</a></p>
+        <p><span>本文标题:</span><a  href="/2021/05/07/HashMap%E5%9C%A8%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8B%E7%9A%84%E6%AD%BB%E5%BE%AA%E7%8E%AF%E9%97%AE%E9%A2%98/">HashMap在多线程下的死循环问题</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问  的个人博客"></a></p>
-        <p><span>发布时间:</span>2021年04月10日 - 15时07分</p>
-        <p><span>最后更新:</span>2021年04月10日 - 11时28分</p>
+        <p><span>发布时间:</span>2021年05月07日 - 11时13分</p>
+        <p><span>最后更新:</span>2021年05月07日 - 16时45分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2021/04/10/Linux%E4%B8%AD%E7%9A%84fork()%E5%87%BD%E6%95%B0/" title="Linux中的fork()函数">http://example.com/2021/04/10/Linux%E4%B8%AD%E7%9A%84fork()%E5%87%BD%E6%95%B0/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://example.com/2021/04/10/Linux%E4%B8%AD%E7%9A%84fork()%E5%87%BD%E6%95%B0/　　作者: " title=""></span>
+            <span>原始链接:</span><a class="post-url" href="/2021/05/07/HashMap%E5%9C%A8%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8B%E7%9A%84%E6%AD%BB%E5%BE%AA%E7%8E%AF%E9%97%AE%E9%A2%98/" title="HashMap在多线程下的死循环问题">http://example.com/2021/05/07/HashMap%E5%9C%A8%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8B%E7%9A%84%E6%AD%BB%E5%BE%AA%E7%8E%AF%E9%97%AE%E9%A2%98/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://example.com/2021/05/07/HashMap%E5%9C%A8%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8B%E7%9A%84%E6%AD%BB%E5%BE%AA%E7%8E%AF%E9%97%AE%E9%A2%98/　　作者: " title=""></span>
         </p>
         <p>
             <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
@@ -355,18 +386,9 @@
 
 <nav id="article-nav">
   
-    <a  href="/2021/04/20/%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          简单实现一个登录功能
-        
-      </div>
-    </a>
   
-  
-    <a  href="/2021/04/02/Mybatis-plus%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Mybatis-plus逆向工程</div>
+    <a  href="/2021/04/20/%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">简单实现一个登录功能</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -378,7 +400,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E3%80%81%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE-put"><span class="toc-number">1.</span> <span class="toc-text">1、存储数据 put()</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E3%80%81%E6%A3%80%E6%9F%A5%E5%AE%B9%E9%87%8F%E6%98%AF%E5%90%A6%E8%B6%85%E6%A0%87-addEntry"><span class="toc-number">2.</span> <span class="toc-text">2、检查容量是否超标 addEntry()</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3%E3%80%81%E8%B0%83%E6%95%B4HashMap%E7%9A%84%E5%AE%B9%E9%87%8F-resize"><span class="toc-number">3.</span> <span class="toc-text">3、调整HashMap的容量 resize()</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4%E3%80%81%E6%97%A7%E7%9A%84%E6%95%B0%E6%8D%AE%E6%98%A0%E5%B0%84%E5%88%B0%E6%96%B0%E7%9A%84%E5%93%88%E5%B8%8C%E8%A1%A8-transfer"><span class="toc-number">4.</span> <span class="toc-text">4、旧的数据映射到新的哈希表 transfer()</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5%E3%80%81%E5%9B%BE%E8%A7%A3"><span class="toc-number">5.</span> <span class="toc-text">5、图解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1%E3%80%81%E6%AD%A3%E5%B8%B8%E5%8D%95%E7%BA%BF%E7%A8%8B"><span class="toc-number">5.1.</span> <span class="toc-text">5.1、正常单线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2%E3%80%81%E5%B9%B6%E5%8F%91%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="toc-number">5.2.</span> <span class="toc-text">5.2、并发多线程</span></a></li></ol></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -451,13 +473,11 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a  href="/2021/04/20/%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD/" title="上一篇: 简单实现一个登录功能">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a  href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a  href="/2021/04/02/Mybatis-plus%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/" title="下一篇: Mybatis-plus逆向工程">
+            <a  href="/2021/04/20/%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD/" title="下一篇: 简单实现一个登录功能">
                 <i class="fa fa-angle-right"></i>
             </a>
         
